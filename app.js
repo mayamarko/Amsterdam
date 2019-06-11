@@ -23,6 +23,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/http/request.html',
             controller : 'httpController as httpCtrl'
         })
+        //login
+        .when('/login', {
+            templateUrl: 'pages/login/login.html',
+            controller : 'loginController as loginCtrl'
+        })
         // other
         .otherwise({ redirectTo: '/' });
 });
