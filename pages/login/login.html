@@ -15,8 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="pages/login/css/main.css">
 <!--===============================================================================================-->
 </head>
-<body>
-	
+<body ng-app="myApp">
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
@@ -27,6 +26,7 @@
 				</div>
 
 				<form class="login100-form validate-form">
+
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
 						<input class="input100" type="text" name="username" placeholder="Enter username">
@@ -48,23 +48,19 @@
 						</div>
 
 						<div>
-							<a href="#" class="txt1">
-								Forgot Password?
-							</a>
+							<a href="#!restore" class="txt1" >Forgot Password?</a>
 						</div>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Login
-						</button>
+						<button ng-click="logIn()" class="login100-form-btn">Login</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 
-	<script src="js/main.js"></script>
+	<script src="pages/login/loginController.js"></script>
 
 </body>
 </html>

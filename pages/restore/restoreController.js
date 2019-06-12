@@ -1,5 +1,5 @@
 angular.module("myApp")
-    .controller("loginController", function ($scope, $http, $window) {
+    .controller("restoreController", function ($scope, $http, $window) {
         $scope.logIn = function() {
             let req = {
                 method: 'POST',

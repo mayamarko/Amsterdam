@@ -33,6 +33,10 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/register/register.html',
             controller : 'registerController as registerCtrl'
         })
+        .when('/restore', {
+            templateUrl: 'pages/restore/restore.html',
+            controller : 'restoreController as restoreCtrl'
+        })
         // other
         .otherwise({ redirectTo: '/' });
 });
