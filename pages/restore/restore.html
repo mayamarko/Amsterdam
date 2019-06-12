@@ -7,52 +7,35 @@
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active"> Restore Password </h2>
 
-<div class="form-style-5">
-    <div class="login100-form-title" >
-        <span class="login100-form-title-1">Restore Password</span>
-    </div>
-    <form>
-        <div>
-            <span>Select a question</span>
-            <select id="job" name="field4">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <img id="icon" alt="User Icon"/>
+        </div>
+
+        <!-- Login Form -->
+        <form>
+            <h4 id="title_question" class="fadeIn second">Select Question</h4>
+            <select id="question" name="question" class="fadeIn second">
                 <optgroup label="Indoors">
                     <option value="fishkeeping">Fishkeeping</option>
                     <option value="reading">Reading</option>
-                    <option value="boxing">Boxing</option>
-                    <option value="debate">Debate</option>
-                    <option value="gaming">Gaming</option>
-                    <option value="snooker">Snooker</option>
-                    <option value="other_indoor">Other</option>
                 </optgroup>
                 <optgroup label="Outdoors">
                     <option value="football">Football</option>
                     <option value="swimming">Swimming</option>
-                    <option value="fishing">Fishing</option>
-                    <option value="climbing">Climbing</option>
-                    <option value="cycling">Cycling</option>
-                    <option value="other_outdoor">Other</option>
                 </optgroup>
             </select>
-            <span class="focus-input100"></span>
-        </div>
+            <input type="text" id="answer" class="fadeIn third" name="answer" placeholder="answer">
+            <input type="submit" ng-click="logIn()" class="fadeIn fourth" value="Restore">
+        </form>
 
-        <br/>
+    </div>
 
-        <div class="wrap-input100">
-            <span> Your answer</span>
-            <input type="text" name="field2" placeholder="Answer">
-            <span class="focus-input100"></span>
-        </div>
-
-        <br/>
-
-        <div class="container-login100-form-btn">
-
-            <input type="submit" value="Restore"/>
-        </div>
-
-    </form>
 </div>
 <script src="pages/restore/restoreController.js"></script>
 </body>
