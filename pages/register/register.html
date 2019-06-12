@@ -33,9 +33,10 @@
                 <div class="card-heading"></div>
                 <div class="card-body">
                     <h2 class="title">Registration Form</h2>
-                    <form method="POST">
+                    <form method="POST"  name="registerForm">
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="User name" name="username">
+<!--                            <span ng-show="registerForm.username.$error.required">This is requierd field</span>-->
                         </div>
                         <div class="input-group">
                             <input class="input--style-3" type="text" placeholder="First name" name="fname">
@@ -102,7 +103,7 @@
 
                                 </br>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit">Submit</button>
+                            <button class="btn btn--pill btn--green" type="submit" >Submit</button>
                         </div>
                     </form>
                 </div>
