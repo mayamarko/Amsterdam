@@ -1,12 +1,9 @@
 angular.module("myApp")
     .controller("restoreController", function ($scope, $http, $window) {
-        $scope.logIn = function () {
+        $scope.restore = function () {
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/restore',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
                 data: {
                     username: $scope.username,
                     question: $scope.question,
@@ -14,7 +11,11 @@ angular.module("myApp")
                 }
             }
             $http(req).then(function (response) {
-                $scope.pass.value = response.data;
+                console.log(response.data);
+                $scope.pass = {
+                    label: response.data
+            }
+                $scope.show = true;
             });
         };
 

@@ -20,23 +20,27 @@
         <!-- Login Form -->
         <form>
             <h4 id="title_name" class="fadeIn second">Enter your username</h4>
-            <input type="text" id="username" class="fadeIn third" name="username" placeholder="Username">
+            <input ng-model="username" type="text" id="username" class="fadeIn third" name="username" placeholder="Username">
             <h4 id="title_question" class="fadeIn second">Select Question</h4>
-            <select id="question" name="question" class="fadeIn second">
-                <optgroup label="Indoors">
-                    <option value="fishkeeping">Fishkeeping</option>
-                    <option value="reading">Reading</option>
-                </optgroup>
-                <optgroup label="Outdoors">
-                    <option value="football">Football</option>
-                    <option value="swimming">Swimming</option>
+            <select  ng-model="question " id="question" name="question" class="fadeIn second">
+                <optgroup label="Questions">
+                    <option>What is the name of your first pet</option>
+                    <option>What is your mother's last name before marriage</option>
+                    <option>What brand was your first Phone</option>
+                    <option>What is your favorite high school teacher's name </option>
                 </optgroup>
             </select>
             <h4 id="title_answer" class="fadeIn second">Enter your Answer</h4>
-            <input type="text" id="answer" class="fadeIn third" name="answer" placeholder="answer">
-            <Label type="text" id="pass" class="fadeIn third" name="pass">
-            <input type="submit" ng-click="logIn()" class="fadeIn fourth" value="Restore">
+            <input ng-model="answer" type="text" id="answer" class="fadeIn third" name="answer" placeholder="answer">
+            <input type="submit" ng-click="restore()" class="fadeIn fourth" value="Restore">
+            <h4 ng-show="show" id="title_password" class="fadeIn second" >Your Password</h4>
+            <Label ng-show="show" ng-model="pass" type="text" id="pass" class="fadeIn third" name="pass">{{ pass.label }}</Label>
+
+            <br/>
         </form>
+        <div ng-show="show" id="formFooter">
+            <a class="underlineHover" href="#!login">Return to Log In</a>
+        </div>
 
     </div>
 
