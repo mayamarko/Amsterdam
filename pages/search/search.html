@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search POI</title>
+    <link rel="stylesheet" type="text/css" href="pages/search/searchStyle.css">
+</head>
+<body>
+
+<div class="jumbotron text-center" id="welcomeNot">
+    <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
+        Trip..</h4></h1>
+</div>
+
+<div class="input-group">
+    <input ng-model="search" id="search" type="text" class="form-control" placeholder="Search..." required>
+    <div class="input-group-btn">
+        <button type="button" ng-click="searchIt()" class="btn">Search</button>
+    </div>
+</div>
+
+
+<div ng-show="show" class="container-fluid bg-3 text-center">
+    <h2>Search Results</h2>
+    <br/>
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+            <h3 ng-modal="poiname" style="color:#6600cc;font-weight: bold;">{{poiname}}</h3>
+            <h4 ng-modal="rnk">Average rank: {{rnk}}</h4>
+            <h4 ng-modal="category" style="font-weight: bold;">Category: {{category}}</h4>
+            <h4 ng-modal="desc">Description: {{desc}}</h4>
+            <h4 ng-modal="view">Number of view: {{view}}</h4>
+            <img src="pages/search/images/second.jpg" alt="Image" style="width: 60%">
+        </div>
+        <div class="col-sm-4">
+        </div>
+    </div>
+</div>
+
+
+<script src="pages/search/searchController.js"></script>
+</body>
+</html>

@@ -37,6 +37,18 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/restore/restore.html',
             controller : 'restoreController as restoreCtrl'
         })
+        .when('/home', {
+            templateUrl: 'pages/home/home.html',
+            controller : 'homeController as homeCtrl'
+        })
+        .when('/search', {
+            templateUrl: 'pages/search/search.html',
+            controller : 'searchController as searchCtrl'
+        })
+        .when('/work', {
+            templateUrl: 'pages/work/work.html',
+            controller : 'workController as workCtrl'
+        })
         // other
         .otherwise({ redirectTo: '/' });
 });

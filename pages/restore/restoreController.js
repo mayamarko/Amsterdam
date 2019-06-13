@@ -14,7 +14,7 @@ angular.module("myApp")
                 console.log(response.data);
                 $scope.pass = {
                     label: response.data
-            }
+                }
                 $scope.show = true;
             });
         };

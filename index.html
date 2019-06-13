@@ -12,10 +12,11 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="pages/css/util.css">
-        <link rel="stylesheet" type="text/css" href="pages/css/main.css">
+        <!--<link rel="stylesheet" type="text/css" href="pages/css/util.css">-->
+        <!--<link rel="stylesheet" type="text/css" href="pages/css/main.css">-->
+        <link rel="stylesheet" type="text/css" href="indexStyle.css">
     </head>
-    <body ng-app="myApp">
+    <body ng-controller="indexController" ng-app="myApp">
         <!-- load angular -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
         <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
@@ -31,6 +32,9 @@
         <script src="pages/login/loginController.js"></script>
         <script src="pages/restore/restoreController.js"></script>
         <script src="pages/register/registerController.js"></script>
+        <script src="pages/home/homeController.js"></script>
+        <script src="pages/search/searchController.js"></script>
+        <script src="pages/work/workController.js"></script>
 
 
         <!-- the website -->
@@ -40,12 +44,9 @@
         <nav class="navbar navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Amsterdam</a>
+                    <a class="navbar-brand" href="#!home">Amsterdam</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#!">Home</a>
-                    </li>
                     <li>
                         <a href="#!about">About</a>
                     </li>
@@ -53,35 +54,27 @@
                         <a href="#!poi">POI</a>
                     </li>
                     <li>
-                        <a href="#!httpRequest">POI</a>
+                        <a href="#!search">Search POI</a>
+                    </li>
+                    <li>
+                        <a href="#!work">work</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#!register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#!login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a ng-hide= "hide" href="#!register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a  ng-hide= "hide" href="#!login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a ng-init="name='Hello Guest'" ng-model="name"><span class="glyphicon glyphicon-heart"></span> {{name}}</a></li>
                 </ul>
             </div>
         </nav>
 
-<!--        <ul>-->
-<!--            <li>-->
-<!--                <a href="#!">Home</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="#!about">About</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="#!poi">POI</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="#!httpRequest">POI</a>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <a href="#!login">Log In</a>-->
-<!--            </li>-->
-<!--        </ul>-->
+
 
         <!-- This section changes as the hashbang changes -->
-        <div ng-view></div>
+        <div ng-view>
+
+
+        </div>
+        <script src="indexController.js"></script>
     </body>
 </html>
