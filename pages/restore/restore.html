@@ -19,6 +19,8 @@
 
         <!-- Login Form -->
         <form>
+            <h4 id="title_name" class="fadeIn second">Enter your username</h4>
+            <input type="text" id="username" class="fadeIn third" name="username" placeholder="Username">
             <h4 id="title_question" class="fadeIn second">Select Question</h4>
             <select id="question" name="question" class="fadeIn second">
                 <optgroup label="Indoors">
@@ -30,7 +32,9 @@
                     <option value="swimming">Swimming</option>
                 </optgroup>
             </select>
+            <h4 id="title_answer" class="fadeIn second">Enter your Answer</h4>
             <input type="text" id="answer" class="fadeIn third" name="answer" placeholder="answer">
+            <Label type="text" id="pass" class="fadeIn third" name="pass">
             <input type="submit" ng-click="logIn()" class="fadeIn fourth" value="Restore">
         </form>
 

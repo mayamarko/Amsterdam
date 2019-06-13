@@ -1,11 +1,13 @@
 angular.module("myApp")
     .controller("loginController", function ($scope, $http, $window) {
-        $scope.logIn = function() {
+        $scope.logIn = function () {
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/login',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    "Access-Control-Allow-Methods":'GET, POST, PUT, DELETE, OPTIONS;'
                 },
                 data: {
                     username: $scope.username,
@@ -19,7 +21,7 @@ angular.module("myApp")
             });
         };
 
-        $scope.restorePassword = function() {
+        $scope.restorePassword = function () {
 
         };
     });
