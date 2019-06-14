@@ -12,8 +12,16 @@ angular.module("myApp")
             }
             $http(req).then(function (response) {
                 console.log(response.data);
-                $scope.pass = {
-                    label: response.data
+                if(response.data===false){
+                    $scope.pass = {
+                        label: "One or more Details are in correct!"
+                    }
+                }
+                else {
+                    $scope.pass = {
+                        label: response.data
+                    }
+                    $scope.show1 = true;
                 }
                 $scope.show = true;
             });

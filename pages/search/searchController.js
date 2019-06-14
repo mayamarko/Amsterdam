@@ -15,6 +15,7 @@ angular.module("myApp")
                 $scope.category = response.data[0].category;
                 $scope.desc = response.data[0].descr;
                 $scope.view = response.data[0].viw;
+                $scope.src=response.data[0].picture;
                 $scope.show = true;
             });
         };

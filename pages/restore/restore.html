@@ -14,27 +14,28 @@
 
         <!--&lt;!&ndash; Icon &ndash;&gt;-->
         <!--<div class="fadeIn first">-->
-            <!--<img id="icon" alt="User Icon"/>-->
+        <!--<img id="icon" alt="User Icon"/>-->
         <!--</div>-->
 
         <!-- Login Form -->
         <form>
-            <h4 id="title_name" class="fadeIn second">Enter your username</h4>
-            <input ng-model="username" type="text" id="username" class="fadeIn third" name="username" placeholder="Username">
+            <h4 id="title_name" class="fadeIn first">Enter your username</h4>
+            <input ng-model="username" type="text" id="username" class="fadeIn first" name="username"
+                   placeholder="Username">
             <h4 id="title_question" class="fadeIn second">Select Question</h4>
-            <select  ng-model="question " id="question" name="question" class="fadeIn second">
-                <optgroup label="Questions">
-                    <option>What is the name of your first pet</option>
-                    <option>What is your mother's last name before marriage</option>
-                    <option>What brand was your first Phone</option>
-                    <option>What is your favorite high school teacher's name </option>
-                </optgroup>
+            <select ng-model="question" id="question" name="question" class="fadeIn second">
+                <option value="" selected data-default class="sel">Select Your Question</option>
+                <option>What is the name of your first pet</option>
+                <option>What is your mother's last name before marriage</option>
+                <option>What brand was your first Phone</option>
+                <option>What is your favorite high school teacher's name</option>
             </select>
-            <h4 id="title_answer" class="fadeIn second">Enter your Answer</h4>
+            <h4 id="title_answer" class="fadeIn third">Enter your Answer</h4>
             <input ng-model="answer" type="text" id="answer" class="fadeIn third" name="answer" placeholder="answer">
             <input type="submit" ng-click="restore()" class="fadeIn fourth" value="Restore">
-            <h4 ng-show="show" id="title_password" class="fadeIn second" >Your Password</h4>
-            <Label ng-show="show" ng-model="pass" type="text" id="pass" class="fadeIn third" name="pass">{{ pass.label }}</Label>
+            <h4 ng-show="show1" id="title_password" class="fadeIn first">Your Password</h4>
+            <Label ng-show="show" ng-model="pass" type="text" id="pass" class="fadeIn second"
+                   name="pass">{{pass.label}}</Label>
 
             <br/>
         </form>

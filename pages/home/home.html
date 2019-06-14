@@ -5,6 +5,7 @@
     <title>Home</title>
 
     <link rel="stylesheet" type="text/css" href="pages/home/css/homeStyle.css">
+<!--    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">-->
 </head>
 <body>
 
@@ -12,10 +13,10 @@
     <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next Trip</h4></h1>
 </div>
 
-<div id="welcome">
-    <div id="re" class="col-sm-8">
+<div id="welcome" >
+    <div id="re" class="col-sm-8" class="container-fluid">
         <br/>
-        <h2 style="text-align: center"><b>Register Today!</b></h2>
+        <h2 style="text-align: center"><b>Are you not registered yet?</b></h2>
         <br/>
         <h5 style="text-align: center">Are you tired of the same tourist vacation?</h5>
         <h5 style="text-align: center">Do you feel like you miss whole world if you go to the same places everyone has been?</h5>
@@ -25,13 +26,13 @@
         <br/>
         <div>
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button id="rgnow" type="button" class="btn">Register Now!</button></div>
+            <div class="col-sm-4"><button id="rgnow" type="button" class="btn" ng-click="reg()">Register Now!</button></div>
             <div class="col-sm-4"></div>
         </div>
         <br/>
         <br/>
     </div>
-    <div id="lo" class="col-sm-4">
+    <div id="lo" class="col-sm-4" class="container-fluid">
         <br/>
         <h2 style="text-align: center"><b>Log In now!</b></h2>
         <br/>
@@ -41,7 +42,7 @@
         <br/>
         <div>
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button id="lgnow" type="button" class="btn">Log In now!</button></div>
+            <div class="col-sm-4"><button id="lgnow" type="button" class="btn" ng-click="log()">Log In now!</button></div>
             <div class="col-sm-4"></div>
         </div>
         <br/>
@@ -49,8 +50,43 @@
     </div>
 </div>
 
-<div id="poiF">
+<div id="explore" ng-init="getRandomPOI()">
+    <br/>
+    <div class="container-fluid bg-3 text-center">
+        <h1><b>Explore new Point Of Interests!</b></h1>
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-sm-4">
+                <h3 ng-modal="poiname1" style="color:#cc283a;font-weight: bold;">{{poiname1}}</h3>
+                <h4 ng-modal="rnk1">Average rank: {{rnk1}}</h4>
+                <h4 ng-modal="category1" style="font-weight: bold;">Category: {{category1}}</h4>
+                <h4 ng-modal="desc1">Description: {{desc1}}</h4>
+                <h4 ng-modal="view1">Number of view: {{view1}}</h4>
+                <img ng-nodal="src1" src="{{src1}}" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <h3 ng-modal="poiname2" style="color:#cc283a;font-weight: bold;">{{poiname2}}</h3>
+                <h4 ng-modal="rnk2">Average rank: {{rnk2}}</h4>
+                <h4 ng-modal="category2" style="font-weight: bold;">Category: {{category2}}</h4>
+                <h4 ng-modal="desc2">Description: {{desc2}}</h4>
+                <h4 ng-modal="view2">Number of view: {{view2}}</h4>
+                <img ng-nodal="src2" src="{{src2}}" alt="Image">
+            </div>
+            <div class="col-sm-4">
+                <h3 ng-modal="poiname3" style="color:#cc283a;font-weight: bold;">{{poiname3}}</h3>
+                <h4 ng-modal="rnk3">Average rank: {{rnk3}}</h4>
+                <h4 ng-modal="category3" style="font-weight: bold;">Category: {{category3}}</h4>
+                <h4 ng-modal="desc3">Description: {{desc3}}</h4>
+                <h4 ng-modal="view3">Number of view: {{view3}}</h4>
+                <img ng-nodal="src3" src="{{src3}}" alt="Image">
+            </div>
 
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
 </div>
 <script src="pages/home/homeController.js"></script>
 </body>
