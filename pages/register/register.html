@@ -26,7 +26,7 @@
     <link href="pages/register/css/main.css" rel="stylesheet" media="all">
 </head>
 
-<body>
+<body ng-app="myApp">
     <div class="page-wrapper bg-gra-01 p-t-180 p-b-100 font-poppins">
         <div class="wrapper wrapper--w780">
             <div class="card card-3">
@@ -35,61 +35,102 @@
                     <h2 class="title">Registration Form</h2>
                     <form method="POST"  name="registerForm">
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="User name" name="username">
+                            <input class="input--style-3" ng-model="username" type="text" placeholder="User Name" name="username">
 <!--                            <span ng-show="registerForm.username.$error.required">This is requierd field</span>-->
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="First name" name="fname">
+                            <input class="input--style-3" ng-model="password" type="password" placeholder="*******" name="password">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="Last name" name="lname">
+                            <input class="input--style-3" ng-model="fname" type="text" placeholder="First Name" name="fname">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="City of Residence" name="city">
+                            <input class="input--style-3" ng-model="lname" type="text" placeholder="Last Name" name="lname">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="text" placeholder="City of Residence" name="country">
+                            <input class="input--style-3" ng-model="city" type="text" placeholder="City of Residence" name="city">
                         </div>
                         <div class="input-group">
-                            <input class="input--style-3" type="email" placeholder="Email" name="email">
+                            <input class="input--style-3" ng-model="country" type="text" placeholder="Country of Residence" name="country">
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-3" ng-model="email" type="email" placeholder="Email" name="email">
                         </div>
 <!--                        <div class="input-group">-->
 <!--                            <input class="input&#45;&#45;style-3 js-datepicker" type="text" placeholder="Birthdate" name="birthday">-->
 <!--                            <i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>-->
 <!--                        </div>-->
+<!--                        <div class="input-group">-->
+<!--                            <div class="rs-select2 js-select-simple select&#45;&#45;no-search">-->
+<!--                                <select ng-model="question1" name="Q1" >-->
+<!--                                    <option disabled="disabled" selected="selected">Confirmation Question</option>-->
+<!--                                    <option>What is the name of your first pet</option>-->
+<!--                                    <option>What is your mother's last name before marriage</option>-->
+<!--                                    <option>What brand was your first Phone</option>-->
+<!--                                    <option>What is your favorite high school teacher's name </option>-->
+<!--                                </select>-->
+<!--                                <div class="select-dropdown"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                            ============================================================-->
                         <div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="Q1">
-                                    <option disabled="disabled" selected="selected">Confirmation Question</option>
+                            <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
+                            <select ng-model="question1" id="question" name="question" class="rs-select2 js-select-simple select--no-search">
+                                <option value="" selected data-default class="sel">Select Your Confirmation Question</option>
+                                <option>What is the name of your first pet</option>
+                                <option>What is your mother's last name before marriage</option>
+                                <option>What brand was your first Phone</option>
+                                <option>What is your favorite high school teacher's name</option>
+                            </select>
+                            <div class="select-dropdown"></div>
+                            </div>
+                        </div>
+
+<!--                            =============================================================-->
+
+
+
+                        <div class="input-group">
+                            <input class="input--style-3" ng-model="answer1" type="text" placeholder="Your Answer" name="answer1">
+                        </div>
+
+<!--                        <div class="input-group">-->
+<!--                            <div class="rs-select2 js-select-simple select&#45;&#45;no-search">-->
+<!--                                <select name="Q2" >-->
+<!--                                    <option disabled="disabled" selected="selected">Confirmation Question</option>-->
+<!--                                    <option>What is the name of your first pet</option>-->
+<!--                                    <option>What is your mother's last name before marriage</option>-->
+<!--                                    <option>What brand was your first Phone</option>-->
+<!--                                    <option>What is your favorite high school teacher's name </option>-->
+<!--                                </select>-->
+<!--                                <div class="select-dropdown"></div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="input-group">
+                            <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
+                                <select ng-model="question2" id="question2" name="question2" class="rs-select2 js-select-simple select--no-search">
+                                    <option value="" selected data-default class="sel">Select Your Confirmation Question</option>
                                     <option>What is the name of your first pet</option>
                                     <option>What is your mother's last name before marriage</option>
                                     <option>What brand was your first Phone</option>
-                                    <option>What is your favorite high school teacher's name </option>
+                                    <option>What is your favorite high school teacher's name</option>
                                 </select>
                                 <div class="select-dropdown"></div>
                             </div>
                         </div>
+
                         <div class="input-group">
-                            <div class="rs-select2 js-select-simple select--no-search">
-                                <select name="Q2">
-                                    <option disabled="disabled" selected="selected">Confirmation Question</option>
-                                    <option>What is the name of your first pet</option>
-                                    <option>What is your mother's last name before marriage</option>
-                                    <option>What brand was your first Phone</option>
-                                    <option>What is your favorite high school teacher's name </option>
-                                </select>
-                                <div class="select-dropdown"></div>
-                            </div>
+                            <input class="input--style-3" ng-model="answer2" type="text" placeholder="Your Answer" name="answer2">
                         </div>
                         <div class="flex-sb-m w-full p-b-30">
                             <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="ckb1">
+                                <input ng-model="checkbox1" class="input-checkbox100" id="ckb1" type="checkbox" name="ckb1">
                                 <label class="label-checkbox100" for="ckb1">
                                     Cat1
                                 </label>
                             </div>
                             <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb2" type="checkbox" name="ckb2">
+                                <input ng-model="checkbox2" class="input-checkbox100" id="ckb2" type="checkbox" name="ckb2">
                                 <label class="label-checkbox100" for="ckb2">
                                     cat2
                                 </label>
@@ -103,7 +144,7 @@
 
                                 </br>
                         <div class="p-t-10">
-                            <button class="btn btn--pill btn--green" type="submit" >Submit</button>
+                            <button class="btn btn--pill btn--green" ng-click="submit()" type="submit" >Submit</button>
                         </div>
                     </form>
                 </div>
