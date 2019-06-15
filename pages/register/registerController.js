@@ -2,10 +2,31 @@ angular.module("myApp")
     .controller("registerController", function ($scope, $http, $window) {
         $scope.submit = function(){
             // $scope.answer = "Submitted! you entered: " + $scope.username
-// let intrests="";
-// if($scope.checkbox2.disable()){
-//     intrests=intrests+
-//}
+    let intrests="";
+            if($scope.checkbox1){
+                if(intrests=="")
+                    intrests="Museum";
+                else
+                intrests=intrests+",Museum";
+            }
+        if($scope.checkbox2){
+            if(intrests=="")
+                intrests="Eatings";
+            else
+                intrests=intrests+",Eatings";
+        }
+            if($scope.checkbox3){
+                if(intrests=="")
+                    intrests="Tours";
+                else
+                    intrests=intrests+",Tours";
+            }
+            if($scope.checkbox4){
+                if(intrests=="")
+                    intrests="Nature and Parks";
+                else
+                    intrests=intrests+",Nature and Parks";
+            }
             //let usernamep=$scope.username;
             let req = {
                 method: 'POST',
@@ -17,7 +38,7 @@ angular.module("myApp")
                     city: $scope.city,
                     country: $scope.country,
                     email: $scope.email,
-                    interests: "Eatings,Museum",
+                    interests: intrests,
                     quastion1: $scope.quastion1,
                     answer1: $scope.answer1,
                     quastion2: $scope.quastion2,
