@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
+
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-image: url(" bg1.jpg") ;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -10,7 +19,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-    font-family:  "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 14px;
     line-height: 1.7;
     color: #666666;
@@ -23,14 +32,41 @@ ul, li {
     /*padding:0px;*/
 }
 
+h2 {
+    font-weight: bold;
+    font-size: 35px;
+}
+
 .jumbotron {
-    background-image: url(" two.jpg");
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
     color: black;
-    height : 200px;
-    /*margin-top: -20px;*/
-    margin-top: -2%;
+    background-color: rgba(219, 217, 210, 0.6);
+}
+
+.row {
+    margin-left: 25%;
+    width: 50%;
+}
+
+img {
+    width: 80%;
+    height: 80%;
+}
+
+#interest {
+    background: rgba(103, 131, 126, 0.47);
+    border-radius: 25px;
+    margin: 0px 50px 20px 50px;
+}
+
+#popular {
+    background: rgba(131, 100, 104, 0.47);
+    border-radius: 25px;
+    margin: 0px 50px 20px 50px;
+}
+
+#all{
+    display:flex;
+}
+.thumbnail{
+    border-radius: 10px;
 }

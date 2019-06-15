@@ -8,9 +8,63 @@
 <body>
 
 <div class="jumbotron text-center" id="wel">
-    <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next Trip</h4></h1>
+    <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
+        Trip</h4></h1>
 </div>
 
+<div id="all">
+    <div id="popular" class="col-sm-6 text-center" ng-init="getByInterests()">
+        <h2>Popular Points of view you might love! </h2>
+        <br/>
+        <div class="row text-center">
+            <div class="thumbnail">
+                <img ng-modal="src1" src="{{src1}}" alt="pic1">
+                <p ng-modal="poiname1" style="font-size: 20px; color:#00b85c;"><strong>{{poiname1}}</strong></p>
+                <p ng-modal="rnk1">Average rank: {{rnk1}}</p>
+                <p ng-modal="category1"><b>Category: {{category1}}</b></p>
+                <p ng-modal="desc1">Description: {{desc1}}</p>
+                <p ng-modal="view1">Number of view: {{view1}}</p>
+                <button class="btn">Add to your Favorites</button>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="thumbnail">
+                <img ng-modal="src2" src="{{src2}}" alt="pic2">
+                <p ng-modal="poiname2" style="font-size: 20px; color:#00b85c;"><strong>{{poiname2}}</strong></p>
+                <p ng-modal="rnk2">Average rank: {{rnk2}}</p>
+                <p ng-modal="category2"><b>Category: {{category2}}</b></p>
+                <p ng-modal="desc2">Description: {{desc2}}</p>
+                <p ng-modal="view2">Number of view: {{view2}}</p>
+                <button class="btn">Add to your Favorites</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="interest" class="col-sm-6 text-center" ng-init="getSaved()">
+        <h2>Your interest! </h2>
+        <br/>
+        <div class="row text-center">
+            <div class="thumbnail">
+                <img ng-modal="src3" src="{{src3}}" alt="pic1">
+                <p ng-modal="poiname3" style="font-size: 20px; color:#b8636b;"><strong>{{poiname3}}</strong></p>
+                <p ng-modal="rnk3">Average rank: {{rnk1}}</p>
+                <p ng-modal="category3"><b>Category: {{category3}}</b></p>
+                <p ng-modal="desc3">Description: {{desc3}}</p>
+                <p ng-modal="view3">Number of view: {{view3}}</p>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="thumbnail">
+                <img ng-modal="src4" src="{{src4}}" alt="pic2">
+                <p ng-modal="poiname4" style="font-size: 20px; color:#b8636b;"><strong>{{poiname4}}</strong></p>
+                <p ng-modal="rnk4">Average rank: {{rnk4}}</p>
+                <p ng-modal="category4"><b>Category: {{category4}}</b></p>
+                <p ng-modal="desc4">Description: {{desc4}}</p>
+                <p ng-modal="view4">Number of view: {{view4}}</p>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="pages/homeRegistered/homeRegisteredController.js"></script>
 </body>
 </html>
