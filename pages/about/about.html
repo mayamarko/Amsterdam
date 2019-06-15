@@ -1,7 +1,198 @@
-<h2>About</h2>
-
-<!-- display button functionality -->
-<div>
-    <button ng-click="myFunc()">Click Me!</button>
-    <p>This button has been clicked {{ btnCount }} times.</p>
+<head>
+    <link rel="stylesheet" type="text/css" href="pages/about/css/aboutcss.css">
+</head>
+<body>
+<div class="jumbotron text-center">
+    <h1>Welcome to Amsterdam</h1>
+    <p>From its humble beginnings as a 13th-century fishing village on a river bed to its current role as a major hub
+        for business, </br>tourism and culture, Amsterdam has had a strong tradition as a centre of culture and
+        commerce.
+    </p>
+    </br></br></br></br>
+    <p></p>
+    <p></p>
+    <p></p>
 </div>
+<!--Each area of Amsterdam has its own character and charm, and a unique variety of shops, restaurants, cafes, museums and attractions. Take time to discover the city's hidden treasures in Amsterdam's neighbourhoods.-->
+
+<div>
+    <div class="container-fluid text-center">
+        <h2>Some Facts About Amsterdam </h2>
+        <!--        <h4>Here are some facts about our wonderful city</h4>-->
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-heart"></span>
+                <h4>INHABITENS</h4>
+                <p>854,316</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-compressed"></span>
+                <h4>TRAMS</h4>
+                <p>200</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-road"></span>
+                <h4>BICYCLES</h4>
+                <p>847,000</p>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-leaf"></span>
+                <h4>PARKS</h4>
+                <p>40</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-certificate"></span>
+                <h4>CANALS</h4>
+                <p>165</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <h4 style="color:#303030;">MUSEUMS</h4>
+                <p>53</p>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-bed"></span>
+                <h4>HOTELS</h4>
+                <p>501</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-cutlery"></span>
+                <h4>RESTAURANTS</h4>
+                <p>1,325</p>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-shopping-cart"></span>
+                <h4 style="color:#303030;">MARKETS</h4>
+                <p>32</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center bg-grey">
+        <h2>Exploring Amsterdam</h2><br>
+        <h4>Each area of Amsterdam has its own character and charm, and a unique variety of shops, restaurants, cafes,<br> museums and attractions. Take time to discover the city's hidden treasures in Amsterdam's neighbourhoods.</h4>
+        <br>
+        <h4>The city of Amsterdam consists of seven city districts: Centre, Nieuw-West, Noord, Oost, West, Zuid and Zuidoost.</h4> <br>
+        <br>
+        <div class="row text-center">
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="pages/about/css/amscenter.jpg" alt="Center" width="400" height="300">
+                    <p><strong>Center</strong></p>
+                    <p>Bustling mix of culture, cuisine and cafés</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="pages/about/css/amsnieuwwest.jpg" alt="NieuwWest" width="400" height="300">
+                    <p><strong>Nieuw West</strong></p>
+                    <p>Where water and modern architecture meet</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="pages/about/css/amsnoord.jpg" alt="Noord" width="400" height="300">
+                <p><strong>Noord</strong></p>
+                <p>Urban renewal meets nature’s beauty</p>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="pages/about/css/amsoost.jpg" alt="Oost" width="400" height="300">
+                <p><strong>Oost</strong></p>
+                <p>Hip places, green spaces and diverse faces</p>
+            </div>
+        </div>
+            <div class="col-sm-4">
+                <div class="thumbnail">
+                    <img src="pages/about/css/amswest.jpg" alt="West" width="400" height="300">
+                    <p><strong>West</strong></p>
+                    <p>Vibrant atmosphere against a green backdrop</p>
+                </div>
+            </div><div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="pages/about/css/amszuid.jpg" alt="Zuid" width="400" height="300">
+                <p><strong>Zuid</strong></p>
+                <p>From age-old art to high-end chic</p>
+            </div>
+        </div>
+        </div>
+    <div class="row text-center">
+        <div class="col-sm-4">
+            <div class="thumbnail">
+                <img src="pages/about/css/amszuidoost.jpg" alt="Center" width="400" height="300">
+                <p><strong>Zuidoost</strong></p>
+                <p>Cultural and large-scale entertainment</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+        <li data-target="#myCarousel" data-slide-to="7"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="pages/about/css/a1.jpg" alt="a1" width="600" height="400" align="middle">
+        </div>
+
+        <div class="item">
+            <img src="pages/about/css/a2.jpg" alt="a2" width="600" height="400" align="middle">
+        </div>
+
+        <div class="item">
+            <img src="pages/about/css/a3.jpg" alt="a3" width="600" height="400">
+        </div>
+        <div class="item">
+            <img src="pages/about/css/a4.jpg" alt="a4" width="600" height="400" align="center">
+        </div>
+
+        <div class="item">
+            <img src="pages/about/css/a5.jpg" alt="a5" width="600" height="400">
+        </div>
+
+        <div class="item">
+            <img src="pages/about/css/a6.jpg" alt="a6" width="600" height="400">
+        </div>
+        <div class="item">
+            <img src="pages/about/css/a7.jpg" alt="a7" width="600" height="400">
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="!#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="!#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+</div>
+
+
+</body>
