@@ -70,3 +70,51 @@ img {
 .thumbnail{
     border-radius: 10px;
 }
+img {
+    width: 60%;
+    height: 40%;
+}
+
+.modal-body {
+    background-image: url("bg1.jpg");
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+#mb {
+    background-color: #00b85c;
+    color: white;
+}
+
+#mb2 {
+    background-color: #00b85c;
+    color: white;
+}
+
+#mb3 {
+    background-color: #b8636b;
+    color: white;
+}
+#mb4 {
+    background-color: #b8636b;
+    color: white;
+}
+
+#mb:hover {
+    background-color: rgba(0, 212, 111, 0.71);
+    color: white;
+}
+#mb2:hover {
+    background-color: rgba(0, 212, 111, 0.71);
+    color: white;
+}
+#mb3:hover {
+    background-color: rgba(214, 120, 128, 0.85);
+    color: white;
+}
+#mb4:hover {
+    background-color: rgba(214, 120, 128, 0.85);
+    color: white;
+}
