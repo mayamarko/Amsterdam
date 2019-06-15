@@ -5,8 +5,6 @@ app.config(function($routeProvider)  {
     $routeProvider
         // homepage
         .when('/', {
-            // this is a template
-            // template: '<h1>This is the default route</h1>'
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
         })
@@ -50,6 +48,14 @@ app.config(function($routeProvider)  {
         .when('/work', {
             templateUrl: 'pages/work/work.html',
             controller : 'workController as workCtrl'
+        })
+        .when('/work', {
+            templateUrl: 'pages/work/work.html',
+            controller : 'workController as workCtrl'
+        })
+        .when('/homeRegistered', {
+            templateUrl: 'pages/homeRegistered/homeRegistered.html',
+            controller : 'homeRegisteredController as homeRegisteredCtrl'
         })
         // other
         .otherwise({ redirectTo: '/' });

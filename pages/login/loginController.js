@@ -17,7 +17,7 @@ angular.module("myApp")
                     $window.sessionStorage.setItem("name", usernamep);
                     //edit the username name and turn off the button
                     $scope.$emit('userLogged', {username: usernamep});
-                    $window.location.href="#!about";
+                    $window.location.href="#!homeRegistered";
 
                 });
             };
