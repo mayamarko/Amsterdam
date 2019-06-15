@@ -40,10 +40,11 @@
         </div>
     </div>
 
-    <div id="interest" class="col-sm-6 text-center" ng-init="getSaved()">
-        <h2>Your interest! </h2>
+    <div id="saved" class="col-sm-6 text-center" ng-init="getSaved()">
+        <h2>Your saved points of Interests! </h2>
         <br/>
-        <div class="row text-center">
+        <h3 ng-show="show1" style="color: #ff1829"><b>You don't have saved points of Interests</b></h3>
+        <div ng-hide="hide1" class="row text-center">
             <div class="thumbnail">
                 <img ng-modal="src3" src="{{src3}}" alt="pic1">
                 <p ng-modal="poiname3" style="font-size: 20px; color:#b8636b;"><strong>{{poiname3}}</strong></p>
@@ -53,7 +54,7 @@
                 <p ng-modal="view3">Number of view: {{view3}}</p>
             </div>
         </div>
-        <div class="row text-center">
+        <div ng-hide="hide1" class="row text-center">
             <div class="thumbnail">
                 <img ng-modal="src4" src="{{src4}}" alt="pic2">
                 <p ng-modal="poiname4" style="font-size: 20px; color:#b8636b;"><strong>{{poiname4}}</strong></p>
