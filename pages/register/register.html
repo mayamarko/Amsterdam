@@ -50,9 +50,32 @@
                         <div class="input-group">
                             <input class="input--style-3" ng-model="city" type="text" placeholder="City of Residence" name="city">
                         </div>
+<!--                        <div class="input-group">-->
+<!--                            <input class="input&#45;&#45;style-3" ng-model="country" type="text" placeholder="Country of Residence" name="country">-->
+<!--                        </div>-->
+<!--                        =================================================================-->
                         <div class="input-group">
-                            <input class="input--style-3" ng-model="country" type="text" placeholder="Country of Residence" name="country">
+                            <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
+                                <select ng-model="country" id="country" name="country" class="rs-select2 js-select-simple select--no-search">
+                                    <option value="" selected data-default class="sel">Select Your Country of Residence</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="China">China</option>
+                                    <option value="Denemark">Denemark</option>
+                                    <option value="Israel">Israel</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Monaco">Monaco</option>
+                                    <option value="August">August</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Panama">Panama</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="USA">USA</option>
+                                </select>
+                                <div class="select-dropdown"></div>
+                            </div>
                         </div>
+
+<!--                        ==================================================================-->
                         <div class="input-group">
                             <input class="input--style-3" ng-model="email" type="email" placeholder="Email" name="email">
                         </div>
@@ -75,12 +98,12 @@
 <!--                            ============================================================-->
                         <div class="input-group">
                             <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
-                            <select ng-model="question1" id="question" name="question" class="rs-select2 js-select-simple select--no-search">
+                            <select ng-model="question1" id="question1" name="question" class="rs-select2 js-select-simple select--no-search">
                                 <option value="" selected data-default class="sel">Select Your Confirmation Question</option>
-                                <option>What is the name of your first pet</option>
-                                <option>What is your mother's last name before marriage</option>
-                                <option>What brand was your first Phone</option>
-                                <option>What is your favorite high school teacher's name</option>
+                                <option value="1">What is the name of your first pet</option>
+                                <option value="2">What is your mother's last name before marriage</option>
+                                <option value="3">What brand was your first Phone</option>
+                                <option value="4">What is your favorite high school teacher's name</option>
                             </select>
                             <div class="select-dropdown"></div>
                             </div>

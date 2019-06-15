@@ -27,6 +27,29 @@ angular.module("myApp")
                 else
                     intrests=intrests+",Nature and Parks";
             }
+            let q1="";
+            if($scope.quastion1.value=="1"){
+                q1="What is the name of your first pet";
+            }
+            if($scope.quastion1.value=="2"){
+                q1="What is your mother's last name before marriage";
+            } if($scope.quastion1.value=="3"){
+                q1="What brand was your first Phone";
+            } if($scope.quastion1.value=="4"){
+                q1="What is your favorite high school teacher's name";
+            }
+            let q2="";
+            if($scope.quastion1.value=="1"){
+                q2="What is the name of your first pet";
+            }
+            if($scope.quastion1.value=="2"){
+                q2="What is your mother's last name before marriage";
+            } if($scope.quastion1.value=="3"){
+                q2="What brand was your first Phone";
+            } if($scope.quastion1.value=="4"){
+                q2="What is your favorite high school teacher's name";
+            }
+
             //let usernamep=$scope.username;
             let req = {
                 method: 'POST',
@@ -36,12 +59,12 @@ angular.module("myApp")
                     first_name: $scope.fname,
                     last_name: $scope.lname,
                     city: $scope.city,
-                    country: $scope.country,
+                    country: $scope.country.valueOf(),
                     email: $scope.email,
                     interests: intrests,
-                    quastion1: $scope.quastion1,
+                    quastion1: q1,
                     answer1: $scope.answer1,
-                    quastion2: $scope.quastion2,
+                    quastion2: q2,
                     answer2: $scope.answer2,
                     password: $scope.password,
 
