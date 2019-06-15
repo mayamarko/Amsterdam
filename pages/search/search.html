@@ -11,34 +11,188 @@
     <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
         Trip..</h4></h1>
 </div>
-
-<div class="input-group">
-    <input ng-model="search" id="search" type="text" class="form-control" placeholder="Search..." required>
-    <div class="input-group-btn">
-        <button type="button" ng-click="searchIt()" class="btn">Search</button>
+<div id="options">
+    <div id="limitation" class="col-sm-6 text-center">
+        <div class="col-sm-6 text-center">
+            <label id="title_cat"><b>Select Category to Show:</b></label>
+            <select ng-model="cat" id="cat" name="cat" ng-click="selCat()">
+                <option value="" selected data-default class="sel">All category</option>
+                <option>Eatings</option>
+                <option>Museum</option>
+                <option>Tours</option>
+                <option>Nature and Parks</option>
+            </select>
+        </div>
+        <div class="col-sm-6 text-center">
+            <label id="title_rnk">Sort by Rank <input ng-modal="sort" id="sort" type="checkbox" value=""
+                                                      ng-click="byRank()"></label>
+        </div>
+    </div>
+    <div class="input-group col-sm-6 text-center">
+        <input ng-model="search" id="search" type="text" class="form-control" placeholder="Search...">
+        <div class="input-group-btn">
+            <button type="button" ng-click="searchIt()" class="btn">Search</button>
+        </div>
     </div>
 </div>
 
-
+<div id="srch1" ng-show="sho">
+    <h2 class="container-fluid text-center" ng-modal="error" style="color:#af677f;font-weight: bold;">
+        {{error}}</h2>
+</div>
 <div ng-show="show" class="container-fluid bg-3 text-center">
     <h2>Search Results</h2>
     <br/>
-    <div class="row">
+    <div class="row" id="srch">
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
-            <h3 ng-modal="poiname" style="color:#6600cc;font-weight: bold;">{{poiname}}</h3>
-            <h4 ng-modal="rnk">Average rank: {{rnk}}</h4>
-            <h4 ng-modal="category" style="font-weight: bold;">Category: {{category}}</h4>
-            <h4 ng-modal="desc">Description: {{desc}}</h4>
-            <h4 ng-modal="view">Number of view: {{view}}</h4>
-            <img ng-modal="src" src="{{src}}" alt="Image" style="width: 60%">
+            <h3 ng-modal="poiname" style="color:#af677f;font-weight: bold; font-size: 30px" data-toggle="modal"
+                data-target="#mo1">{{poiname}}</h3>
+            <br/>
+            <img ng-modal="src" src="{{src}}" alt="Image" style="width: 60%; height:40%" data-toggle="modal"
+                 data-target="#mo1">
         </div>
         <div class="col-sm-4">
         </div>
     </div>
 </div>
 
+
+<div ng-hide="es" id="eat" ng-init="getByCategory('Eatings')">
+    <br/>
+    <h1 style="color:black;font-weight: bold;">Eatings</h1>
+    <br/>
+    <div class="row text-center">
+        <div class="col-sm-3" ng-repeat="x in pois">
+            <div>
+                <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
+                    data-target="#mox">{{x.poiname}}</h2>
+                <br/>
+                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+<div ng-hide="ms" id="museum" ng-init="getByCategory('Museum')">
+    <br/>
+    <h1 style="color:black;font-weight: bold;">Museum</h1>
+    <br/>
+    <div class="row text-center">
+        <div class="col-sm-3" ng-repeat="x in pois1">
+            <div>
+                <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
+                    data-target="#mox">{{x.poiname}}</h2>
+                <br/>
+                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+<div ng-hide="ts" id="tours" ng-init="getByCategory('Tours')">
+    <br/>
+    <h1 style="color:black;font-weight: bold;">Tours</h1>
+    <br/>
+    <div class="row text-center">
+        <div class="col-sm-3" ng-repeat="x in pois2">
+            <div>
+                <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
+                    data-target="#mox">{{x.poiname}}</h2>
+                <br/>
+                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+<div ng-hide="ps" id="parks" ng-init="getByCategory('Nature and Parks')">
+    <br/>
+    <h1 style="color:black;font-weight: bold;">Nature and Parks</h1>
+    <br/>
+    <div class="row text-center">
+        <div class="col-sm-3" ng-repeat="x in pois3">
+            <div>
+                <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
+                    data-target="#mox">{{x.poiname}}</h2>
+                <br/>
+                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+<div ng-show="rs" id="ranks">
+    <br/>
+    <h1 style="color:black;font-weight: bold;">All Points Of Interest By Rank Ascending</h1>
+    <br/>
+    <div class="row text-center">
+        <div class="col-sm-3" ng-repeat="x in pois4">
+            <div>
+                <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
+                    data-target="#mox">{{x.poiname}}</h2>
+                <br/>
+                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Territory-->
+<div id="mo1" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="text-align: center">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title" ng-modal="poiname" style="color:#af677f;font-weight: bold;">{{poiname}}</h2>
+            </div>
+            <div class="modal-body">
+                <h4 ng-modal="rnk">Average rank: {{rnk}}</h4>
+                <h4 ng-modal="category" style="font-weight: bold;">Category: {{category}}</h4>
+                <h4 ng-modal="desc">Description: {{desc}}</h4>
+                <h4 ng-modal="view">Number of view: {{view}}</h4>
+                <br/>
+                <img ng-modal="src" src="{{src}}" alt="Image" style="width: 60%">
+            </div>
+            <div class="modal-footer">
+                <button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal Territory-->
+<div id="mox" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="text-align: center">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">{{selectedpoi.poiname}}</h2>
+            </div>
+            <div class="modal-body">
+                <h4>Average rank: {{selectedpoi.rnk}}</h4>
+                <h4 style="font-weight: bold;">Category: {{selectedpoi.category}}</h4>
+                <h4>Description: {{selectedpoi.descr}}</h4>
+                <h4>Number of view: {{selectedpoi.viw}}</h4>
+                <br/>
+                <img src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+            </div>
+            <div class="modal-footer">
+                <button id="mx" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="pages/search/searchController.js"></script>
 </body>

@@ -58,6 +58,7 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a ng-show="show" ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
             <li><a ng-hide="hide" href="#!register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
             <li><a ng-hide="hide" href="#!login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <li><a ng-model="name"><span class="glyphicon glyphicon-heart"></span> {{name}}</a></li>
