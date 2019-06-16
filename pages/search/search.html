@@ -23,9 +23,18 @@
                 <option>Nature and Parks</option>
             </select>
         </div>
-        <div class="col-sm-6 text-center">
-            <label id="title_rnk">Sort by Rank <input ng-modal="sort" id="sort" type="checkbox" value=""
-                                                      ng-click="byRank()"></label>
+        <div class="col-sm-4 text-center">
+            <label id="title_rnk">Sort by Rank
+                <button id="sort" type="button" class="btn"
+                        ng-click="byRank()">Sort
+                </button>
+            </label>
+        </div>
+        <div ng-show="show" class="col-sm-2 text-center">
+            <button type="button" class="btn notification" >
+                <span>Favorites</span>
+                <span ng-modal="number" ng-init="number='0'" class="badge">{{number}}</span>
+            </button>
         </div>
     </div>
     <div class="input-group col-sm-6 text-center">
@@ -40,10 +49,10 @@
     <h2 class="container-fluid text-center" ng-modal="error" style="color:#af677f;font-weight: bold;">
         {{error}}</h2>
 </div>
-<div ng-show="show" id="srch" class="container-fluid bg-3 text-center">
+<div ng-show="show1" id="srch" class="container-fluid bg-3 text-center">
     <h2><b>Search Results</b></h2>
     <br/>
-    <div class="row" >
+    <div class="row">
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
@@ -52,6 +61,11 @@
             <br/>
             <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%; height:40%" data-toggle="modal"
                  data-target="#mo1">
+            <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                <span ng-hide="all.isSelected" class="glyphicon glyphicon-heart-empty"
+                      ng-click="toFavorites(all)"></span>
+                <span ng-show="all.isSelected" ng-click="unFavorites(all)" class="glyphicon glyphicon-heart"></span>
+            </h2>
         </div>
         <div class="col-sm-4">
         </div>
@@ -67,9 +81,14 @@
         <div class="col-sm-3" ng-repeat="x in pois">
             <div>
                 <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
-                    data-target="#mox">{{x.poiname}}</h2>
+                    data-target="#mox">{{x.poiname}} </h2>
                 <br/>
                 <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="x.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(x)"></span>
+                    <span ng-show="x.isSelected" ng-click="unFavorites(x)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <br/>
         </div>
@@ -87,6 +106,11 @@
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
                 <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="x.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(x)"></span>
+                    <span ng-show="x.isSelected" ng-click="unFavorites(x)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <br/>
         </div>
@@ -104,6 +128,11 @@
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
                 <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="x.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(x)"></span>
+                    <span ng-show="x.isSelected" ng-click="unFavorites(x)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <br/>
         </div>
@@ -121,6 +150,11 @@
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
                 <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="x.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(x)"></span>
+                    <span ng-show="x.isSelected" ng-click="unFavorites(x)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <br/>
         </div>
@@ -138,6 +172,11 @@
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
                 <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="x.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(x)"></span>
+                    <span ng-show="x.isSelected" ng-click="unFavorites(x)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <br/>
         </div>
@@ -161,6 +200,11 @@
                 <h4 ng-modal="view">Number of view: {{view}}</h4>
                 <br/>
                 <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="all.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(all)"></span>
+                    <span ng-show="all.isSelected" ng-click="unFavorites(all)" class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <div class="modal-footer">
                 <button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -186,6 +230,12 @@
                 <h4>Number of view: {{selectedpoi.viw}}</h4>
                 <br/>
                 <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(selectedpoi)"></span>
+                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"
+                          class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <div class="modal-footer">
                 <button id="mx" type="button" class="btn btn-default" data-dismiss="modal">Close</button>

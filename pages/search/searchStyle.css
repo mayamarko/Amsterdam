@@ -132,3 +132,14 @@ img {
     background: rgba(219, 217, 210, 0.6);
     padding: 5px 5px 5px 50px;
 }
+
+
+.notification .badge {
+    position: absolute;
+    top: -3px;
+    border-radius: 50%;
+    border-color:  #af677f;
+    border-style: dotted;
+    background: #f6fff4;
+    color: black;
+}
