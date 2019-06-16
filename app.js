@@ -56,3 +56,18 @@ app.config(function($routeProvider)  {
         // other
         .otherwise({ redirectTo: '/' });
 });
+
+app.service('views', function($http) {
+    this.updateViews = function (poi) {
+        let req = {
+            method: 'POST',
+            url: "http://localhost:3000/editViews",
+            data: {
+                poiId: poi.poiId,
+            }
+        }
+        $http(req).then(function (response) {
+            console.log(response.data);
+        });
+    }
+});

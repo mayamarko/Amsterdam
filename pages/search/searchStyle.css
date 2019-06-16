@@ -34,10 +34,11 @@ ul, li {
 input[type=text] {
     background-color: rgba(246, 246, 246, 0.62);
     text-align: center;
-    font-size: 16px;
-    width: 10px;
+    font-size: 12px;
 }
-
+#search{
+    width: 78%;
+}
 button {
     background-color: #af677f;
     color: white;
@@ -79,11 +80,10 @@ button:hover {
 }
 
 
-#mb, #mx{
+#mb, #mx {
     background-color: #af677f;
     color: white;
 }
-
 
 
 #mb, #mx:hover {
@@ -92,7 +92,7 @@ button:hover {
 }
 
 #title_cat, #title_rnk {
-    font-size: 20px;
+    font-size: 14px;
     color: #b8636b;
 }
 
@@ -136,7 +136,7 @@ img {
     position: absolute;
     top: -3px;
     border-radius: 50%;
-    border-color:  #af677f;
+    border-color: #af677f;
     border-style: dotted;
     background: #f6fff4;
     color: black;

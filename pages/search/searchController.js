@@ -1,5 +1,5 @@
 angular.module("myApp")
-    .controller("searchController", function ($scope, $http, $window, $q) {
+    .controller("searchController", function ($scope, $http, $window, $q, views) {
 
         $scope.searchIt = function () { //for searching by name
             let req = {
@@ -100,6 +100,7 @@ angular.module("myApp")
 
         $scope.rowClick = function (selected) { //for modal function - to know which poi was clicked
             $scope.selectedpoi = selected;
+            views.updateViews(selected);
         }
 
         $scope.selCat = function () { //for the selection by category. supporting back to all categories as well.
@@ -227,8 +228,8 @@ angular.module("myApp")
             if ($window.sessionStorage.getItem("favorites") !== null) {
                 arr = $window.sessionStorage.getItem("favorites");
                 arr2 = $window.sessionStorage.getItem("favoritesname");
-                arr2=arr2.replace(selectedpoi.poiname+",","");
-                arr2=arr2.replace(","+selectedpoi.poiname,"");
+                arr2 = arr2.replace(selectedpoi.poiname + ",", "");
+                arr2 = arr2.replace("," + selectedpoi.poiname, "");
                 let x = arr.indexOf(poiId);
                 let b = arr.substring(0, x - 1);
                 let c = arr.substring(x + 1);
