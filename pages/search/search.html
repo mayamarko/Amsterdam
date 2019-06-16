@@ -15,7 +15,7 @@
     <div id="limitation" class="col-sm-6 text-center">
         <div class="col-sm-6 text-center">
             <label id="title_cat"><b>Select Category to Show:</b></label>
-            <select ng-model="cat" id="cat" name="cat" ng-click="selCat()">
+            <select ng-model="cat" id="cat" name="cat" ng-change="selCat()">
                 <option value="" selected data-default class="sel">All category</option>
                 <option>Eatings</option>
                 <option>Museum</option>
@@ -40,17 +40,17 @@
     <h2 class="container-fluid text-center" ng-modal="error" style="color:#af677f;font-weight: bold;">
         {{error}}</h2>
 </div>
-<div ng-show="show" class="container-fluid bg-3 text-center">
-    <h2>Search Results</h2>
+<div ng-show="show" id="srch" class="container-fluid bg-3 text-center">
+    <h2><b>Search Results</b></h2>
     <br/>
-    <div class="row" id="srch">
+    <div class="row" >
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
             <h3 ng-modal="poiname" style="color:#af677f;font-weight: bold; font-size: 30px" data-toggle="modal"
                 data-target="#mo1">{{poiname}}</h3>
             <br/>
-            <img ng-modal="src" src="{{src}}" alt="Image" style="width: 60%; height:40%" data-toggle="modal"
+            <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%; height:40%" data-toggle="modal"
                  data-target="#mo1">
         </div>
         <div class="col-sm-4">
@@ -69,7 +69,7 @@
                 <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
-                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
             </div>
             <br/>
         </div>
@@ -86,7 +86,7 @@
                 <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
-                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
             </div>
             <br/>
         </div>
@@ -103,7 +103,7 @@
                 <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
-                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
             </div>
             <br/>
         </div>
@@ -120,7 +120,7 @@
                 <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
-                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
             </div>
             <br/>
         </div>
@@ -137,7 +137,7 @@
                 <h2 style="color:#cc283a;font-weight: bold;font-size: 25px" ng-click="rowClick(x)" data-toggle="modal"
                     data-target="#mox">{{x.poiname}}</h2>
                 <br/>
-                <img src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+                <img ng-src="{{x.picture}}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
             </div>
             <br/>
         </div>
@@ -160,7 +160,7 @@
                 <h4 ng-modal="desc">Description: {{desc}}</h4>
                 <h4 ng-modal="view">Number of view: {{view}}</h4>
                 <br/>
-                <img ng-modal="src" src="{{src}}" alt="Image" style="width: 60%">
+                <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%">
             </div>
             <div class="modal-footer">
                 <button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -185,7 +185,7 @@
                 <h4>Description: {{selectedpoi.descr}}</h4>
                 <h4>Number of view: {{selectedpoi.viw}}</h4>
                 <br/>
-                <img src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+                <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
             </div>
             <div class="modal-footer">
                 <button id="mx" type="button" class="btn btn-default" data-dismiss="modal">Close</button>

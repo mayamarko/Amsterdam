@@ -113,6 +113,8 @@ angular.module("myApp")
             $http(req).then(function (response) {
                 $scope.pois4 = response.data;
                 if(sort.checked) {
+                    $scope.sho = true;
+                    $scope.show = false;
                     $scope.rs = true;
                     $scope.es = true;
                     $scope.ms = true;
