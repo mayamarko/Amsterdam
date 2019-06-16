@@ -77,9 +77,7 @@ button:hover {
     -o-background-size: cover;
     color: black;
 }
-.modal-open {
-    overflow: scroll;
-}
+
 
 #mb, #mx{
     background-color: #af677f;

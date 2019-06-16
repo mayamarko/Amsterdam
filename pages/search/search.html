@@ -30,7 +30,7 @@
                 </button>
             </label>
         </div>
-        <div ng-show="show" class="col-sm-2 text-center">
+        <div ng-show="show" class="col-sm-2 text-center" ng-init="saved()">
             <button type="button" class="btn notification" >
                 <span>Favorites</span>
                 <span ng-modal="number" ng-init="number='0'" class="badge">{{number}}</span>
