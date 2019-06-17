@@ -14,7 +14,7 @@
         Trip</h4></h1>
 </div>
 
-<div id="welcome">
+<div id="welcome" ng-init="getAllReviews()">
     <div id="re" class="col-sm-6" class="container-fluid">
         <br/>
         <h2 style="text-align: center"><b>Are you not registered yet?</b></h2>
@@ -54,20 +54,31 @@
         <br/>
         <div class="row" id="uno">
             <div class="col-sm-4">
-                <h3 ng-modal="poiname1" style="color:#cc283a;font-weight: bold;" data-toggle="modal"
-                    data-target="#mo1" ng-click="update(poid1)">{{poiname1}}</h3>
+                <h3 ng-modal="poiname1" style="color:#cc283a;font-weight: bold;" ng-click="rowClick(poid1)"
+                    data-toggle="modal"
+                    data-target="#mox">{{poiname1}}</h3>
                 <br/>
-                <img ng-modal="src1" ng-src="{{src1}}" alt="Image" data-toggle="modal" data-target="#mo1" ng-click="update(poid1)">
+                <img ng-modal="src1" ng-src="{{src1}}" alt="Image" ng-click="rowClick(poid1)"
+                     data-toggle="modal"
+                     data-target="#mox">
             </div>
             <div class="col-sm-4">
-                <h3 ng-modal="poiname2" style="color:#cc283a;font-weight: bold;" data-toggle="modal" data-target="#mo2" ng-click="update(poid2)">{{poiname2}}</h3>
+                <h3 ng-modal="poiname2" style="color:#cc283a;font-weight: bold;" ng-click="rowClick(poid2)"
+                    data-toggle="modal"
+                    data-target="#mox">{{poiname2}}</h3>
                 <br/>
-                <img ng-modal="src2" ng-src="{{src2}}" alt="Image" data-toggle="modal" data-target="#mo2" ng-click="update(poid2)">
+                <img ng-modal="src2" ng-src="{{src2}}" alt="Image" ng-click="rowClick(poid2)"
+                     data-toggle="modal"
+                     data-target="#mox">
             </div>
             <div class="col-sm-4">
-                <h3 ng-modal="poiname3" style="color:#cc283a;font-weight: bold;" data-toggle="modal" data-target="#mo3" ng-click="update(poid3)">{{poiname3}}</h3>
+                <h3 ng-modal="poiname3" style="color:#cc283a;font-weight: bold;" ng-click="rowClick(poid3)"
+                    data-toggle="modal"
+                    data-target="#mox">{{poiname3}}</h3>
                 <br/>
-                <img ng-modal="src3" ng-src="{{src3}}" alt="Image" data-toggle="modal" data-target="#mo3" ng-click="update(poid3)">
+                <img ng-modal="src3" ng-src="{{src3}}" alt="Image" ng-click="rowClick(poid3)"
+                     data-toggle="modal"
+                     data-target="#mox">
             </div>
 
         </div>
@@ -76,70 +87,105 @@
     <br/>
     <br/>
 </div>
+
+
+<!--&lt;!&ndash;Modal Territory&ndash;&gt;-->
+<!--<div id="mo1" class="modal fade" role="dialog">-->
+<!--    <div class="modal-dialog" style="text-align: center">-->
+<!--        &lt;!&ndash; Modal content&ndash;&gt;-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title" ng-modal="poiname1" style="color:#cc283a;font-weight: bold;">{{poiname1}}</h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <h4 ng-modal="rnk1">Average rank: {{rnk1}}</h4>-->
+<!--                <h4 ng-modal="category1" style="font-weight: bold;">Category: {{category1}}</h4>-->
+<!--                <h4 ng-modal="desc1">Description: {{desc1}}</h4>-->
+<!--                <h4 ng-modal="view1">Number of view: {{view1}}</h4>-->
+<!--                <img ng-modal="src1" ng-src="{{src1}}" alt="Image">-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div id="mo2" class="modal fade" role="dialog">-->
+<!--    <div class="modal-dialog" style="text-align: center">-->
+<!--        &lt;!&ndash; Modal content&ndash;&gt;-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title" ng-modal="poiname2" style="color:#cc283a;font-weight: bold;">{{poiname2}}</h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <h4 ng-modal="rnk2">Average rank: {{rnk2}}</h4>-->
+<!--                <h4 ng-modal="category2" style="font-weight: bold;">Category: {{category2}}</h4>-->
+<!--                <h4 ng-modal="desc2">Description: {{desc2}}</h4>-->
+<!--                <h4 ng-modal="view2">Number of view: {{view2}}</h4>-->
+<!--                <img ng-modal="src2" ng-src="{{src2}}" alt="Image">-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button id="mb2" type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div id="mo3" class="modal fade" role="dialog">-->
+<!--    <div class="modal-dialog" style="text-align: center">-->
+<!--        &lt;!&ndash; Modal content&ndash;&gt;-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--                <h2 class="modal-title" ng-modal="poiname3" style="color:#cc283a;font-weight: bold;">{{poiname3}}</h2>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <h4 ng-modal="rnk3">Average rank: {{rnk3}}</h4>-->
+<!--                <h4 ng-modal="category3" style="font-weight: bold;">Category: {{category3}}</h4>-->
+<!--                <h4 ng-modal="desc3">Description: {{desc3}}</h4>-->
+<!--                <h4 ng-modal="view3">Number of view: {{view3}}</h4>-->
+<!--                <img ng-modal="src3" ng-src="{{src3}}" alt="Image">-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button id="mb3" type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
 
 
 <!--Modal Territory-->
-<div id="mo1" class="modal fade" role="dialog">
+<div id="mox" class="modal fade" role="dialog">
     <div class="modal-dialog" style="text-align: center">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title" ng-modal="poiname1" style="color:#cc283a;font-weight: bold;">{{poiname1}}</h2>
+                <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">{{selectedpoi.poiname}}</h2>
             </div>
             <div class="modal-body">
-                <h4 ng-modal="rnk1">Average rank: {{rnk1}}</h4>
-                <h4 ng-modal="category1" style="font-weight: bold;">Category: {{category1}}</h4>
-                <h4 ng-modal="desc1">Description: {{desc1}}</h4>
-                <h4 ng-modal="view1">Number of view: {{view1}}</h4>
-                <img ng-modal="src1" ng-src="{{src1}}" alt="Image">
+                <h4>Average rank: {{selectedpoi.rnk}}</h4>
+                <h4 style="font-weight: bold;">Category: {{selectedpoi.category}}</h4>
+                <h4>Description: {{selectedpoi.descr}}</h4>
+                <h4>Number of view: {{selectedpoi.viw}}</h4>
+                <h4><b>Reviews:</b></h4>
+                <h4>1. {{selectedpoi.reviews[0].review}}</h4>
+                <h4>2. {{selectedpoi.reviews[1].review}}</h4>
+                <br/>
+                <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+                <h2 ng-show="show" style="font-size: 25px">Add to favorites
+                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"
+                          ng-click="toFavorites(selectedpoi)"></span>
+                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"
+                          class="glyphicon glyphicon-heart"></span>
+                </h2>
             </div>
             <div class="modal-footer">
-                <button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="mo2" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="text-align: center">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title" ng-modal="poiname2" style="color:#cc283a;font-weight: bold;">{{poiname2}}</h2>
-            </div>
-            <div class="modal-body">
-                <h4 ng-modal="rnk2">Average rank: {{rnk2}}</h4>
-                <h4 ng-modal="category2" style="font-weight: bold;">Category: {{category2}}</h4>
-                <h4 ng-modal="desc2">Description: {{desc2}}</h4>
-                <h4 ng-modal="view2">Number of view: {{view2}}</h4>
-                <img ng-modal="src2" ng-src="{{src2}}" alt="Image">
-            </div>
-            <div class="modal-footer">
-                <button id="mb2" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="mo3" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="text-align: center">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title" ng-modal="poiname3" style="color:#cc283a;font-weight: bold;">{{poiname3}}</h2>
-            </div>
-            <div class="modal-body">
-                <h4 ng-modal="rnk3">Average rank: {{rnk3}}</h4>
-                <h4 ng-modal="category3" style="font-weight: bold;">Category: {{category3}}</h4>
-                <h4 ng-modal="desc3">Description: {{desc3}}</h4>
-                <h4 ng-modal="view3">Number of view: {{view3}}</h4>
-                <img ng-modal="src3" ng-src="{{src3}}" alt="Image">
-            </div>
-            <div class="modal-footer">
-                <button id="mb3" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id="mx" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
