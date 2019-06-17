@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
 
 /* ==========================================================================
    #FONT
    ========================================================================== */
-.font-robo {
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
-}
+/*.font-robo {*/
+/*  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;*/
+/*}*/
 
-.font-poppins {
-  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
-}
+/*.font-poppins {*/
+/*  font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;*/
+/*}*/
 
 /* ==========================================================================
    #GRID
@@ -81,8 +82,14 @@ dl, dd, ol, ul,
 figure,
 hr,
 fieldset, legend {
+  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+
+}
+body{
+  background-color: #F0F8FF;
+  padding: 0 0 20px 0;
 }
 
 /**
@@ -161,13 +168,6 @@ h6 {
 /* ==========================================================================
    #BACKGROUND
    ========================================================================== */
-.bg-blue {
-  background: #2c6ed5;
-}
-
-.bg-red {
-  background: #fa4251;
-}
 
 .bg-gra-01 {
   /*background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));*/
@@ -181,29 +181,29 @@ h6 {
 /* ==========================================================================
    #SPACING
    ========================================================================== */
-.p-t-100 {
-  padding-top: 100px;
-}
+/*.p-t-100 {*/
+/*  padding-top: 100px;*/
+/*}*/
 
-.p-t-180 {
-  padding-top: 180px;
-}
+/*.p-t-180 {*/
+/*  padding-top: 180px;*/
+/*}*/
 
-.p-t-20 {
-  padding-top: 20px;
-}
+/*.p-t-20 {*/
+/*  padding-top: 20px;*/
+/*}*/
 
-.p-t-10 {
-  padding-top: 10px;
-}
+/*.p-t-10 {*/
+/*  padding-top: 10px;*/
+/*}*/
 
-.p-t-30 {
-  padding-top: 30px;
-}
+/*.p-t-30 {*/
+/*  padding-top: 30px;*/
+/*}*/
 
-.p-b-100 {
-  padding-bottom: 100px;
-}
+/*.p-b-100 {*/
+/*  padding-bottom: 100px;*/
+/*}*/
 
 /* ==========================================================================
    #WRAPPER
@@ -232,7 +232,7 @@ h6 {
   display: inline-block;
   line-height: 40px;
   padding: 0 33px;
-  font-family: Poppins, Arial, "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif;
   cursor: pointer;
   color: #fff;
   -webkit-transition: all 0.4s ease;
@@ -269,47 +269,12 @@ td.active {
   background-color: #2c6ed5;
 }
 
-input[type="date" i] {
-  padding: 14px;
-}
+
 
 .table-condensed td, .table-condensed th {
   font-size: 14px;
-  font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
-}
-
-.daterangepicker td {
-  width: 40px;
-  height: 30px;
-}
-
-.daterangepicker {
-  border: none;
-  -webkit-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  -moz-box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  box-shadow: 0px 8px 20px 0px rgba(0, 0, 0, 0.15);
-  display: none;
-  border: 1px solid #e0e0e0;
-  margin-top: 5px;
-}
-
-.daterangepicker::after, .daterangepicker::before {
-  display: none;
-}
-
-.daterangepicker thead tr th {
-  padding: 10px 0;
-}
-
-.daterangepicker .table-condensed th select {
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  font-size: 14px;
-  padding: 5px;
-  outline: none;
 }
 
 /* ==========================================================================
@@ -346,13 +311,19 @@ input {
   margin-bottom: 33px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.tmp{
+  position: relative;
+  margin-bottom: 33px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 .input--style-3 {
   padding: 5px 0;
   font-size: 16px;
   color: #ccc;
   background: transparent;
+
 }
+
 
 .input--style-3::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -398,6 +369,9 @@ input {
   border: none;
   height: 36px;
   background: transparent;
+  position: relative;
+  margin-bottom: 33px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .rs-select2 .select2-container .select2-selection--single .select2-selection__rendered {
@@ -535,7 +509,7 @@ input {
 }
 
 .label-checkbox100 {
-  font-family: Poppins-Regular;
+  font-family: "Poppins", sans-serif;
   font-size: 13px;
   color: #999999;
   line-height: 1.4;
