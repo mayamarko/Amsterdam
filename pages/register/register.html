@@ -34,25 +34,31 @@
             <div class="card-heading"></div>
             <div class="card-body">
                 <h2 class="title">Registration Form</h2>
-                <form >
+                <form name="myForm" ng-submit="myForm.$valid && submit()">
                     <div class="input-group">
                         <input class="input--style-3 tmp" ng-model="username" type="text" placeholder="User Name"
-                               name="username" style="">
+                               name="username" style="" ng-required="true" ng-pattern="/^[a-zA-Z]{3,8}$/" >
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.username.$error.pattern">Not The username must contains 3-8 letter only</p>
+
 
                         <input class="input--style-3 tmp" ng-model="password" type="password" placeholder="Your Password"
-                               name="password">
+                               name="password"ng-required="true" ng-pattern="/^[a-zA-Z0-9]{5,10}$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.password.$error.pattern">Password must contains 5-10 characters</p>
 
                         <input class="input--style-3 tmp" ng-model="fname" type="text" placeholder="First Name"
-                               name="fname">
+                               name="fname" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.fname.$error.pattern">First name must be letter only</p>
 
-                        <input class="input--style-3 tmp" ng-model="lname" type="text" placeholder="Last Name" name="lname">
+                        <input class="input--style-3 tmp" ng-model="lname" type="text" placeholder="Last Name" name="lname" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.lname.$error.pattern">Last name must be letter only</p>
 
                         <input class="input--style-3 tmp" ng-model="city" type="text" placeholder="City of Residence"
-                               name="city">
+                               name="city"ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.city.$error.pattern">City must be letter only</p>
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-model="country" id="country" name="country"
-                                    class="rs-select2 js-select-simple select--no-search">
+                                    class="rs-select2 js-select-simple select--no-search" ng-required="true">
                                 <option value="" selected data-default class="sel">Select Your Country of Residence
                                 </option>
                                 <option value="Australia">Australia</option>
@@ -71,7 +77,8 @@
                             <div class="select-dropdown"></div>
                         </div>
 
-                        <input class="input--style-3 tmp" ng-model="email" type="email" placeholder="Email" name="email">
+                        <input class="input--style-3 tmp" ng-model="email" type="email" placeholder="Email" name="email" ng-required="true" ng-pattern="/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.email.$error.pattern">Wrong email type</p>
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-model="question1" id="question1" name="question1"
@@ -86,12 +93,12 @@
                             <div class="select-dropdown"></div>
                         </div>
 
-                        <input class="input--style-3 tmp" ng-model="answer1" type="text" placeholder="Your Answer"
+                        <input class="input--style-3 tmp" ng-required="true" ng-model="answer1" type="text" placeholder="Your Answer"
                                name="answer1">
 
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
-                            <select ng-model="question2" id="question2" name="question2"
+                            <select ng-required="true" ng-model="question2" id="question2" name="question2"
                                     class="rs-select2 js-select-simple select--no-search">
                                 <option value="" selected data-default class="sel">Select Your Confirmation Question
                                 </option>
@@ -128,18 +135,21 @@
                         <label class="label-checkbox100" for="ckb4">
                             Nature and Parks
                         </label>
-
+                        <p ng-show="err" style="color:red;">You must choose at least two interests</p>
                     </div>
 
                     </br>
                     <div class="p-t-10">
-                        <button class="btn btn--pill btn--green" ng-click="submit()" type="submit">Submit</button>
+                        <button class="btn btn--pill btn--green" type="submit">Submit</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 <!-- Jquery JS-->
 <!--    <script src="pages/register/vendor/jquery/jquery.min.js"></script>-->
