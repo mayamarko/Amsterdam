@@ -65,6 +65,7 @@ angular.module("myApp")
                     $scope.defer.promise.then(function () {
                         for (let i = 0; i < 5; i++) {
                             $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
+                            $scope.pois[i].isSaved = $scope.isSaved($scope.pois[i].poiId);
                         }
                     });
                 } else if (category === "Museum") {
@@ -73,6 +74,7 @@ angular.module("myApp")
                     $scope.defer1.promise.then(function () {
                         for (let i = 0; i < 5; i++) {
                             $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
+                            $scope.pois1[i].isSaved = $scope.isSaved($scope.pois1[i].poiId);
                         }
                     });
                 } else if (category === "Tours") {
@@ -81,6 +83,7 @@ angular.module("myApp")
                     $scope.defer2.promise.then(function () {
                         for (let i = 0; i < 5; i++) {
                             $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
+                            $scope.pois2[i].isSaved = $scope.isSaved($scope.pois2[i].poiId);
                         }
                     });
                 } else if (category === "Nature and Parks") {
@@ -89,6 +92,7 @@ angular.module("myApp")
                     $scope.defer3.promise.then(function () {
                         for (let i = 0; i < 5; i++) {
                             $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
+                            $scope.pois3[i].isSaved = $scope.isSaved($scope.pois3[i].poiId);
                         }
                     });
                 }
@@ -178,6 +182,7 @@ angular.module("myApp")
                 $scope.pois4 = response.data;
                 for (let i = 0; i < 20; i++) {
                     $scope.pois4[i].isSelected = ($scope.isSaved($scope.pois4[i].poiId)) || (needCheck && array.includes($scope.pois4[i].poiId.toString()));
+                    $scope.pois4[i].isSaved = $scope.isSaved($scope.pois4[i].poiId);
                 }
                 $scope.sho = false;
                 $scope.show1 = false;
@@ -192,59 +197,65 @@ angular.module("myApp")
 
         //click hurt to save and double click to un save
         $scope.toFavorites = function (selectedpoi) {
-            let arr;
-            let arr2;
-            let poiId = selectedpoi.poiId;
-            if ($window.sessionStorage.getItem("favorites") !== null) {
-                arr = $window.sessionStorage.getItem("favorites");
-                arr2 = $window.sessionStorage.getItem("favoritesname");
-                // if (arr.indexOf(poiId) === -1) {
-                if (arr === "") {
+            if(!selectedpoi.isSaved) {
+                let arr;
+                let arr2;
+                let poiId = selectedpoi.poiId;
+                if ($window.sessionStorage.getItem("favorites") !== null) {
+                    arr = $window.sessionStorage.getItem("favorites");
+                    arr2 = $window.sessionStorage.getItem("favoritesname");
+                    // if (arr.indexOf(poiId) === -1) {
+                    if (arr === "") {
+                        arr = poiId;
+                        arr2 = selectedpoi.poiname;
+                    } else {
+                        arr = arr + "," + poiId;
+                        arr2 = arr2 + "," + selectedpoi.poiname;
+                    }
+                    selectedpoi.isSelected = true;
+                    $scope.number++;
+                    // } else {
+                    //     selectedpoi.isSelected = false;
+                    // }
+                } else {
                     arr = poiId;
                     arr2 = selectedpoi.poiname;
-                } else {
-                    arr = arr + "," + poiId;
-                    arr2 = arr2 + "," + selectedpoi.poiname;
+                    selectedpoi.isSelected = true;
+                    $scope.number = 1;
                 }
-                selectedpoi.isSelected = true;
-                $scope.number++;
-                // } else {
-                //     selectedpoi.isSelected = false;
-                // }
-            } else {
-                arr = poiId;
-                arr2 = selectedpoi.poiname;
-                selectedpoi.isSelected = true;
-                $scope.number = 1;
-            }
-            $window.sessionStorage.setItem("favorites", arr);
-            $window.sessionStorage.setItem("favoritesname", arr2);
-            $window.sessionStorage.setItem("num", $scope.number);
-        };
-        $scope.unFavorites = function (selectedpoi) {
-            let arr;
-            let arr2;
-            let poiId = selectedpoi.poiId;
-            if ($window.sessionStorage.getItem("favorites") !== null) {
-                arr = $window.sessionStorage.getItem("favorites");
-                arr2 = $window.sessionStorage.getItem("favoritesname");
-                arr2 = arr2.replace(selectedpoi.poiname + ",", "");
-                arr2 = arr2.replace("," + selectedpoi.poiname, "");
-                let x = arr.indexOf(poiId);
-                let b = arr.substring(0, x - 1);
-                let c = arr.substring(x + 1);
-                if (x === 0) {
-                    c = arr.substring(x + 2);
-                }
-                if (poiId > 9) {
-                    c = arr.substring(x + 2);
-                }
-                arr = b + c;
-                $scope.number--;
-                selectedpoi.isSelected = false;
                 $window.sessionStorage.setItem("favorites", arr);
                 $window.sessionStorage.setItem("favoritesname", arr2);
                 $window.sessionStorage.setItem("num", $scope.number);
+            }
+        };
+        $scope.unFavorites = function (selectedpoi) {
+            if(!selectedpoi.isSaved) {
+                let arr;
+                let arr2;
+                let poiId = selectedpoi.poiId;
+                if ($window.sessionStorage.getItem("favorites") !== null) {
+                    arr = $window.sessionStorage.getItem("favorites");
+                    arr2 = $window.sessionStorage.getItem("favoritesname");
+                    arr2 = arr2.replace(selectedpoi.poiname + ",", "");
+                    arr2 = arr2.replace("," + selectedpoi.poiname, "");
+                    let x = arr.indexOf(poiId);
+                    let b = arr.substring(0, x - 1);
+                    let c = arr.substring(x + 1);
+                    if (x === 0) {
+                        c = arr.substring(x + 2);
+                    }
+                    if (poiId > 9) {
+                        c = arr.substring(x + 2);
+                    }
+                    arr = b + c;
+                    if ($scope.number > 0) {
+                        $scope.number--;
+                    }
+                    selectedpoi.isSelected = false;
+                    $window.sessionStorage.setItem("favorites", arr);
+                    $window.sessionStorage.setItem("favoritesname", arr2);
+                    $window.sessionStorage.setItem("num", $scope.number);
+                }
             }
         };
 
