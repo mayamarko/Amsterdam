@@ -34,7 +34,7 @@
     </div>
     <div class="input-group col-sm-6 text-center">
         <div ng-show="show" class="col-sm-3 text-center" ng-init="saved()">
-            <button type="button" class="btn notification">
+            <button type="button" class="btn notification" ng-click="toFavo()">
                 <span>Favorites</span>
                 <span ng-modal="number" ng-init="number='0'" class="badge">{{number}}</span>
             </button>
@@ -232,6 +232,9 @@
                 <h4 style="font-weight: bold;">Category: {{selectedpoi.category}}</h4>
                 <h4>Description: {{selectedpoi.descr}}</h4>
                 <h4>Number of view: {{selectedpoi.viw}}</h4>
+                <h4>Reviews:</h4>
+                <h4>{{selectedpoi.review[0]}}</h4>
+                <h4>{{selectedpoi.review[1]}}</h4>
                 <br/>
                 <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
                 <h2 ng-show="show" style="font-size: 25px">Add to favorites
