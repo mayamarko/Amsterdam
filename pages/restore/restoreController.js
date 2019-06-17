@@ -27,9 +27,6 @@ angular.module("myApp")
             });
         };
 
-        $scope.restorePassword = function () {
-
-        };
     });
 
 

@@ -3,16 +3,17 @@
 /* BASIC */
 
 html {
-    background-color: #56baed;
+    background-color: #8a6db8;
 }
 
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
+    background-color: #f7e4ff;
 }
 
 a {
-    color: #92badd;
+    color: #a180d0;
     display: inline-block;
     text-decoration: none;
     font-weight: 400;
@@ -25,9 +26,11 @@ h2 {
     text-transform: uppercase;
     display: inline-block;
     margin: 40px 8px 10px 8px;
-    color: #cccccc;
+    color: white;
 }
-
+h4,label{
+    color: white;
+}
 
 /* STRUCTURE */
 
@@ -44,7 +47,7 @@ h2 {
 #formContent {
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
-    background: #fff;
+    background: black;
     padding: 10px;
     width: 90%;
     max-width: 450px;
@@ -72,15 +75,15 @@ h2.inactive {
 }
 
 h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
+    color: #ffffff;
+    border-bottom: 2px solid #8a6db8;
 }
 
 
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: #56baed;
+    background-color: #8a6db8;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -89,8 +92,8 @@ input[type=button], input[type=submit], input[type=reset] {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+    -webkit-box-shadow: 0 10px 30px 0 rgba(138, 109, 184, 0.4);
+    box-shadow: 0 10px 30px 0 rgba(138, 109, 184, 0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -102,7 +105,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-    background-color: #39ace7;
+    background-color: rgba(138, 109, 184, 0.78);
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -136,7 +139,7 @@ input[type=text] {
 
 input[type=text]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #8a6db8;
 }
 
 input[type=text]::placeholder {
@@ -167,7 +170,7 @@ select {
 
 select:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #8a6db8;
 }
 
 select::placeholder {
@@ -298,7 +301,7 @@ h4 {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: #8a6db8;
     content: "";
     transition: width 0.2s;
 }
