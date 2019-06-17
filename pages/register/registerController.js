@@ -49,9 +49,9 @@ angular.module("myApp")
                         country: country,
                         email: $scope.email,
                         interests: intrests,
-                        quastion1: q1,
+                        question1: q1,
                         answer1: $scope.answer1,
-                        quastion2: q2,
+                        question2: q2,
                         answer2: $scope.answer2,
                         password: $scope.password,
                     }
