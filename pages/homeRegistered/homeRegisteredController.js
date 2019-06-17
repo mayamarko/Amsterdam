@@ -1,5 +1,5 @@
 angular.module("myApp")
-    .controller("homeRegisteredController", function ($scope, $window, $http, views) {
+    .controller("homeRegisteredController", function ($scope, $window, $http, views, $q) {
         self = this;
         $scope.getByInterests = function () {
             let req = {
@@ -14,20 +14,18 @@ angular.module("myApp")
 
                 } else {
                     $scope.poiname1 = response.data[0].poiname;
-                    $scope.rnk1 = response.data[0].rnk;
-                    $scope.category1 = response.data[0].category;
-                    $scope.desc1 = response.data[0].descr;
-                    $scope.view1 = response.data[0].viw;
                     $scope.src1 = response.data[0].picture;
                     $scope.poid1 = response.data[0];
+                    if ($scope.reviews[response.data[0].poiId] !== false) {
+                        $scope.poid1.reviews = $scope.reviews[response.data[0].poiId];
+                    }
 
                     $scope.poiname2 = response.data[1].poiname;
-                    $scope.rnk2 = response.data[1].rnk;
-                    $scope.category2 = response.data[1].category;
-                    $scope.desc2 = response.data[1].descr;
-                    $scope.view2 = response.data[1].viw;
                     $scope.src2 = response.data[1].picture;
                     $scope.poid2 = response.data[1];
+                    if ($scope.reviews[response.data[1].poiId] !== false) {
+                        $scope.poid2.reviews = $scope.reviews[response.data[1].poiId];
+                    }
                 }
             });
         };
@@ -46,25 +44,51 @@ angular.module("myApp")
                     $scope.show1 = true;
                 } else {
                     $scope.poiname3 = response.data[0].poiname;
-                    $scope.rnk3 = response.data[0].rnk;
-                    $scope.category3 = response.data[0].category;
-                    $scope.desc3 = response.data[0].descr;
-                    $scope.view3 = response.data[0].viw;
                     $scope.src3 = response.data[0].picture;
                     $scope.poid3 = response.data[0];
+                    if ($scope.reviews[response.data[0].poiId] !== false) {
+                        $scope.poid3.reviews = $scope.reviews[response.data[0].poiId];
+                    }
 
                     $scope.poiname4 = response.data[1].poiname;
-                    $scope.rnk4 = response.data[1].rnk;
-                    $scope.category4 = response.data[1].category;
-                    $scope.desc4 = response.data[1].descr;
-                    $scope.view4 = response.data[1].viw;
                     $scope.src4 = response.data[1].picture;
                     $scope.poid4 = response.data[1];
+                    if ($scope.reviews[response.data[1].poiId] !== false) {
+                        $scope.poid4.reviews = $scope.reviews[response.data[1].poiId];
+                    }
                 }
             });
         };
 
-        $scope.update = function (poi) {
-            views.updateViews(poi);
+        // $scope.update = function (poi) {
+        //     views.updateViews(poi);
+        // }
+        $scope.rowClick = function (selected) { //for modal function - to know which poi was clicked
+            $scope.selectedpoi = selected;
+            views.updateViews(selected);
         }
+
+        $scope.getAllReviews = function () {
+            var promises = [];
+            let rvws = new Array(20);
+            rvws[0] = false;
+            for (let i = 1; i <= 20; i++) {
+                let req = {
+                    method: 'GET',
+                    url: 'http://localhost:3000/getReviewPOI',
+                    params: {
+                        poiId: i,
+                    }
+                }
+                let promise = $http(req).then(function (response) {
+                    let send = response.data;
+                    rvws[i] = send;
+                });
+                promises.push(promise);
+            }
+            $q.all(promises).then(function (resp) {
+                $scope.reviews = rvws;
+            });
+        }
+
     });

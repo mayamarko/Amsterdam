@@ -7,12 +7,12 @@
 </head>
 <body>
 
-<div class="jumbotron text-center" id="welcomeNot">
+<div class="jumbotron text-center" id="welcomeNot" ng-init="saved()">
     <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
         Trip..</h4></h1>
 </div>
-<div id="options">
-    <div id="limitation" class="col-sm-6 text-center">
+<div id="options" ng-init="getAllReviews()">
+    <div id="limitation" class="col-sm-6 text-center" >
         <div class="col-sm-8 text-center">
             <label id="title_cat"><b>Select Category to Show:</b></label>
             <select ng-model="cat" id="cat" name="cat" ng-change="selCat()">
@@ -33,7 +33,7 @@
 
     </div>
     <div class="input-group col-sm-6 text-center">
-        <div ng-show="show" class="col-sm-3 text-center" ng-init="saved()">
+        <div ng-show="show" class="col-sm-3 text-center">
             <button type="button" class="btn notification" ng-click="toFavo()">
                 <span>Favorites</span>
                 <span ng-modal="number" ng-init="number='0'" class="badge">{{number}}</span>
@@ -41,7 +41,7 @@
         </div>
         <div class="col-sm-9 text-center">
             <input ng-model="search" id="search" type="text" class="form-control" placeholder="Search...">
-            <div class="input-group-btn" >
+            <div class="input-group-btn">
                 <button type="button" ng-click="searchIt()" class="btn">Search</button>
             </div>
         </div>
@@ -60,10 +60,12 @@
         <div class="col-sm-4">
         </div>
         <div class="col-sm-4">
-            <h3 ng-modal="poiname" style="color:#af677f;font-weight: bold; font-size: 30px" ng-click="rowClick(all)" data-toggle="modal"
+            <h3 ng-modal="poiname" style="color:#af677f;font-weight: bold; font-size: 30px" ng-click="rowClick(all)"
+                data-toggle="modal"
                 data-target="#mox">{{poiname}}</h3>
             <br/>
-            <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%; height:40%" ng-click="rowClick(all)" data-toggle="modal"
+            <img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%; height:40%" ng-click="rowClick(all)"
+                 data-toggle="modal"
                  data-target="#mox">
             <h2 ng-show="show" style="font-size: 25px">Add to favorites
                 <span ng-hide="all.isSelected" class="glyphicon glyphicon-heart-empty"
@@ -190,31 +192,31 @@
 
 <!--&lt;!&ndash;Modal Territory&ndash;&gt;-->
 <!--<div id="mo1" class="modal fade" role="dialog">-->
-    <!--<div class="modal-dialog" style="text-align: center">-->
-        <!--&lt;!&ndash; Modal content&ndash;&gt;-->
-        <!--<div class="modal-content">-->
-            <!--<div class="modal-header">-->
-                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
-                <!--<h2 class="modal-title" ng-modal="poiname" style="color:#af677f;font-weight: bold;">{{poiname}}</h2>-->
-            <!--</div>-->
-            <!--<div class="modal-body">-->
-                <!--<h4 ng-modal="rnk">Average rank: {{rnk}}</h4>-->
-                <!--<h4 ng-modal="category" style="font-weight: bold;">Category: {{category}}</h4>-->
-                <!--<h4 ng-modal="desc">Description: {{desc}}</h4>-->
-                <!--<h4 ng-modal="view">Number of view: {{view}}</h4>-->
-                <!--<br/>-->
-                <!--<img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%">-->
-                <!--<h2 ng-show="show" style="font-size: 25px">Add to favorites-->
-                    <!--<span ng-hide="all.isSelected" class="glyphicon glyphicon-heart-empty"-->
-                          <!--ng-click="toFavorites(all)"></span>-->
-                    <!--<span ng-show="all.isSelected" ng-click="unFavorites(all)" class="glyphicon glyphicon-heart"></span>-->
-                <!--</h2>-->
-            <!--</div>-->
-            <!--<div class="modal-footer">-->
-                <!--<button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
+<!--<div class="modal-dialog" style="text-align: center">-->
+<!--&lt;!&ndash; Modal content&ndash;&gt;-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--<h2 class="modal-title" ng-modal="poiname" style="color:#af677f;font-weight: bold;">{{poiname}}</h2>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<h4 ng-modal="rnk">Average rank: {{rnk}}</h4>-->
+<!--<h4 ng-modal="category" style="font-weight: bold;">Category: {{category}}</h4>-->
+<!--<h4 ng-modal="desc">Description: {{desc}}</h4>-->
+<!--<h4 ng-modal="view">Number of view: {{view}}</h4>-->
+<!--<br/>-->
+<!--<img ng-modal="src" ng-src="{{src}}" alt="Image" style="width: 60%">-->
+<!--<h2 ng-show="show" style="font-size: 25px">Add to favorites-->
+<!--<span ng-hide="all.isSelected" class="glyphicon glyphicon-heart-empty"-->
+<!--ng-click="toFavorites(all)"></span>-->
+<!--<span ng-show="all.isSelected" ng-click="unFavorites(all)" class="glyphicon glyphicon-heart"></span>-->
+<!--</h2>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button id="mb" type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</div>-->
 
 
@@ -232,9 +234,9 @@
                 <h4 style="font-weight: bold;">Category: {{selectedpoi.category}}</h4>
                 <h4>Description: {{selectedpoi.descr}}</h4>
                 <h4>Number of view: {{selectedpoi.viw}}</h4>
-                <h4>Reviews:</h4>
-                <h4>{{selectedpoi.review[0]}}</h4>
-                <h4>{{selectedpoi.review[1]}}</h4>
+                <h4><b>Reviews:</b></h4>
+                <h4>1. {{selectedpoi.reviews[0].review}}</h4>
+                <h4>2. {{selectedpoi.reviews[1].review}}</h4>
                 <br/>
                 <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
                 <h2 ng-show="show" style="font-size: 25px">Add to favorites
