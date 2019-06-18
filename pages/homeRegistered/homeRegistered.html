@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Registered</title>
-    <link rel="stylesheet" type="text/css" href="pages/homeRegistered/homeRegisteredStyle.css">
-</head>
-<body>
-
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--<meta charset="UTF-8">-->
+<!--<title>Home Registered</title>-->
+<!--<link rel="stylesheet" type="text/css" href="pages/homeRegistered/homeRegisteredStyle.css">-->
+<!--</head>-->
+<!--<body>-->
+<link rel="stylesheet" type="text/css" href="pages/homeRegistered/homeRegisteredStyle.css">
 <div class="jumbotron text-center" id="wel">
     <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
         Trip</h4></h1>
@@ -42,24 +42,14 @@
         <h2>Your saved points of Interests! </h2>
         <br/>
         <h3 ng-show="show1" style="color: #ff1829"><b>You don't have saved points of Interests</b></h3>
-        <div ng-hide="hide1" class="row text-center">
+        <div ng-hide="hide1" class="row text-center" ng-repeat="x in poid3">
             <div class="thumbnail">
-                <img ng-modal="src3" ng-src="{{src3}}" alt="pic1" ng-click="rowClick(poid3)"
+                <img ng-src="{{x.picture}}" alt="pic1" ng-click="rowClick(x)"
                      data-toggle="modal"
                      data-target="#mox">
-                <p ng-modal="poiname3" style="font-size: 20px; color:#b8636b;" ng-click="rowClick(poid3)"
+                <p style="font-size: 20px; color:#b8636b;" ng-click="rowClick(x)"
                    data-toggle="modal"
-                   data-target="#mox"><strong>{{poiname3}}</strong></p>
-            </div>
-        </div>
-        <div ng-hide="hide1" class="row text-center">
-            <div class="thumbnail">
-                <img ng-modal="src4" ng-src="{{src4}}" alt="pic2" ng-click="rowClick(poid4)"
-                     data-toggle="modal"
-                     data-target="#mox">
-                <p ng-modal="poiname4" style="font-size: 20px; color:#b8636b;" ng-click="rowClick(poid4)"
-                   data-toggle="modal"
-                   data-target="#mox"><strong>{{poiname4}}</strong></p>
+                   data-target="#mox"><strong>{{x.poiname}}</strong></p>
             </div>
         </div>
     </div>
@@ -185,5 +175,5 @@
 
 
 <script src="pages/homeRegistered/homeRegisteredController.js"></script>
-</body>
-</html>
+<!--</body>-->
+<!--</html>-->

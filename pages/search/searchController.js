@@ -138,7 +138,7 @@ angular.module("myApp")
                 $scope.ps = true;
                 $scope.rs = false;
                 for (let i = 0; i < 5; i++) {
-                    $scope.pois[i].isSelected = needCheck && array.includes($scope.pois[i].poiId.toString());
+                    $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
                 }
             } else if ($scope.cat === "Museum") {
                 $scope.es = true;
@@ -147,7 +147,7 @@ angular.module("myApp")
                 $scope.ps = true;
                 $scope.rs = false;
                 for (let i = 0; i < 5; i++) {
-                    $scope.pois1[i].isSelected = needCheck && array.includes($scope.pois1[i].poiId.toString());
+                    $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
                 }
             } else if ($scope.cat === "Tours") {
                 $scope.ts = false;
@@ -156,7 +156,7 @@ angular.module("myApp")
                 $scope.ps = true;
                 $scope.rs = false;
                 for (let i = 0; i < 5; i++) {
-                    $scope.pois2[i].isSelected = needCheck && array.includes($scope.pois2[i].poiId.toString());
+                    $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
                 }
             } else if ($scope.cat === "Nature and Parks") {
                 $scope.ps = false;
@@ -165,7 +165,7 @@ angular.module("myApp")
                 $scope.es = true;
                 $scope.rs = false;
                 for (let i = 0; i < 5; i++) {
-                    $scope.pois3[i].isSelected = needCheck && array.includes($scope.pois3[i].poiId.toString());
+                    $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
                 }
             } else {
                 $scope.es = false;
@@ -174,10 +174,10 @@ angular.module("myApp")
                 $scope.ps = false;
                 $scope.rs = false;
                 for (let i = 0; i < 5; i++) {
-                    $scope.pois[i].isSelected = needCheck && array.includes($scope.pois[i].poiId.toString());
-                    $scope.pois1[i].isSelected = needCheck && array.includes($scope.pois1[i].poiId.toString());
-                    $scope.pois2[i].isSelected = needCheck && array.includes($scope.pois2[i].poiId.toString());
-                    $scope.pois3[i].isSelected = needCheck && array.includes($scope.pois3[i].poiId.toString());
+                    $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
+                    $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
+                    $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
+                    $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
                 }
             }
         };
@@ -296,7 +296,7 @@ angular.module("myApp")
                     $scope.savedPoi = response.data;
                     console.log($scope.savedPoi);
                     let array;
-                    let needCheck=false;
+                    let needCheck = false;
                     if ($window.sessionStorage.getItem("favorites") !== null) {
                         array = $window.sessionStorage.getItem("favorites").split(",");
                         needCheck = true;

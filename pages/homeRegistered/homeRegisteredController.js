@@ -43,18 +43,12 @@ angular.module("myApp")
                     $scope.hide1 = true;
                     $scope.show1 = true;
                 } else {
-                    $scope.poiname3 = response.data[0].poiname;
-                    $scope.src3 = response.data[0].picture;
-                    $scope.poid3 = response.data[0];
+                    $scope.poid3 = response.data;
                     if ($scope.reviews[response.data[0].poiId] !== false) {
-                        $scope.poid3.reviews = $scope.reviews[response.data[0].poiId];
+                        $scope.poid3[0].reviews = $scope.reviews[response.data[0].poiId];
                     }
-
-                    $scope.poiname4 = response.data[1].poiname;
-                    $scope.src4 = response.data[1].picture;
-                    $scope.poid4 = response.data[1];
-                    if ($scope.reviews[response.data[1].poiId] !== false) {
-                        $scope.poid4.reviews = $scope.reviews[response.data[1].poiId];
+                    if ($scope.poid3.length > 1 && $scope.reviews[response.data[0].poiId] !== false) {
+                        $scope.poid3[1].reviews = $scope.reviews[response.data[0].poiId];
                     }
                 }
             });
