@@ -4,8 +4,8 @@ angular.module("myApp")
         $scope.init = function () {
             let stringArr = "";
             let arr=[];
-            if ($window.sessionStorage.getItem("favorites") !== null) {
-                stringArr = $window.sessionStorage.getItem("favorites");
+            if ($window.sessionStorage.getItem("favoritesname") !== null) {
+                stringArr = $window.sessionStorage.getItem("favoritesname");
                 arr = stringArr.split(',');
                 $scope.defer = $q.defer();
                 $scope.getAll();
@@ -24,7 +24,7 @@ angular.module("myApp")
                 });
             }
             else {
-                alert("you dont have saved");
+                alert("you dont have saved items");
             }
 
 
@@ -53,6 +53,8 @@ angular.module("myApp")
         $scope.rowClick = function (selected) { //for modal function - to know which poi was clicked
             $scope.selectedpoi = selected;
         }
+
+
         $scope.addToDB = function (selected) { //for modal function - to know which poi was clicked
             let req = {
                 method: 'POST',
@@ -74,14 +76,82 @@ angular.module("myApp")
                     selected.favorites=true;
                     $scope.message="Your POI is saved";
                     $scope.showMessage=true;
-                    // $scope.pass = {
-                    //     label: response.data
-                    // }
-                    // $scope.show1 = true;
+                    let tmp1=new Array();
+                    let tmpString="";
+                    for(k=0;k<$scope.poiShow.length;k++){
+                        if($scope.poiShow[k].poiname!==selected.poiname){
+                            tmp1.push($scope.poiShow[k])
+                        }
+                    }
+                    $scope.poiShow=tmp1;
+                    for(k=0;k<$scope.poiShow.length;k++){
+                       if(k!=0){
+                           tmpString=tmpString+","+$scope.poiShow[k].poiname;
+                       }else {
+                           tmpString=$scope.poiShow[k].poiname;
+                       }
+                    }
+                    $window.sessionStorage.setItem("num",$scope.nember-1);
+
                 }
-                // $scope.show = true;
+
             });
         }
+
+        $scope.AddReview=function(selected){
+            if($scope.rank!=null){
+                $scope.AddRank(selected);
+            }
+            if($scope.review!=null){
+                $scope.AddReviewDB(selected);
+            }
+        }
+
+        $scope.AddRank=function (selected) {
+            let req = {
+                method: 'POST',
+                url: 'http://localhost:3000/saveRankPoi',
+                data: {
+                    poiId: selected.poiId,
+                    cnt: $scope.rank
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if(response.data===false){
+
+                }
+                else {
+          alert("your rank is saved");
+
+                }
+
+            });
+
+        }
+
+        $scope.AddReviewDB=function (selected) {
+            let req = {
+                method: 'POST',
+                url: 'http://localhost:3000/saveReviewPoi',
+                data: {
+                    poiId: selected.poiId,
+                    review: $scope.review
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if(response.data===false){
+
+                }
+                else {
+                    alert("your rank is saved");
+                }
+
+            });
+
+        }
+
     });
 
 
