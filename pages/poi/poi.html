@@ -5,17 +5,40 @@
 </head>
 <body>
 <div class="jumbotron text-center" id="welcomeNot">
-    <h1 style="font-weight: bold;">Favorites <h4 style="font-weight: bold;">You can view you current favorites and save them for the DB
+    <h1 style="font-weight: bold;">Favorites <h4 style="font-weight: bold;">You can view you current favorites and save
+        them for the DB
     </h4></h1>
 </div>
 <div ng-init="init()">
-    <div ng-repeat="x in poiShow" class="col-sm-4 text-center">
-        <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox"></h2><br>
-        <img ng-src="{{ x.picture }}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
-        <button id="saveTodb" type="button" ng-click="addToDB(x)"ng-hide="x.favorites">Add to favorites</button>
-        <button id="saveReviews" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add review</button>
-        <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>
+    <div class="row text-center">
+        <h1>Favorites Cart</h1><br><br>
+        <h3 ng-hide="poiShow.found">No Favorites in Cart for you</h3>
+        <div ng-repeat="x in poiShow" ng-show="poiShow.found" class="col-sm-4 text-center">
+            <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)"
+                data-toggle="modal" data-target="#mox"></h2><br>
+            <img ng-src="{{ x.picture }}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            <button id="saveTodb" type="button" ng-click="addToDB(x)" ng-hide="x.favorites">Add to favorites</button>
+<!--            <button id="saveReviews" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add-->
+<!--                review-->
+<!--            </button>-->
+<!--            <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>-->
+        </div>
     </div>
+
+    <div class="row text-center">
+        <br><br><br>
+        <h1>Saved Favorites</h1><br><br>
+        <h3 ng-hide="poiSaved.found">No saved Favorites for you</h3>
+        <div ng-repeat="x in poiSaved" ng-show="poiSaved.found" class="col-sm-4 text-center" >
+            <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)"
+                data-toggle="modal" data-target="#mox"></h2><br>
+            <img ng-src="{{ x.picture }}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
+            <button id="saveReviews1" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add Review</button>
+            <button id="deleteFromDB" type="button" ng-click="deleteFromDB(x)">Delete from Favorites</button>
+<!--            <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>-->
+        </div>
+    </div>
+
 
 </div>
 
@@ -30,33 +53,33 @@
                 <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">{{selectedpoi.poiname}}</h2>
             </div>
             <div class="modal-body">
-            <div class="modal-body">
-<!--                <h4>Average rank: {{selectedpoi.rnk}}</h4>-->
-<!--                <h4 style="font-weight: bold;">Category: {{selectedpoi.category}}</h4>-->
-<!--                <h4>Description: {{selectedpoi.descr}}</h4>-->
-<!--                <h4>Number of view: {{selectedpoi.viw}}</h4>-->
-                <br/>
-                <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
-                <br/><br/><br/>
-                Rank the POI(1- lowest, 5- highest)<input ng-model="rank" type="text" id="rankpoi" class="fadeIn third" name="rankpoi">
-                </br>
-                </br>
-                Write a review on the POI<input ng-model="review" type="text" id="raviewpoi" class="fadeIn third" name="raviewpoi">
+                <div class="modal-body">
+                    <br/>
+                    <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+                    <br/><br/><br/>
+                    Rank the POI(1- lowest, 5- highest)<input ng-model="rank" type="text" id="rankpoi"
+                                                              class="fadeIn third" name="rankpoi">
+                    </br>
+                    </br>
+                    Write a review on the POI<input ng-model="review" type="text" id="raviewpoi" class="fadeIn third"
+                                                    name="raviewpoi">
 
-<!--                <h2 ng-show="show" style="font-size: 25px">-->
-<!--                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"-->
-<!--                          ng-click="toFavorites(selectedpoi)"></span>-->
-<!--                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"-->
-<!--                          class="glyphicon glyphicon-heart"></span>-->
-<!--                </h2>-->
-            </div>
-            <div class="modal-footer">
-                <button id="ms" type="button" class="btn btn-default" data-dismiss="modal" ng-clik="AddReview(selectedpoi)">save</button>
+                    <!--                <h2 ng-show="show" style="font-size: 25px">-->
+                    <!--                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"-->
+                    <!--                          ng-click="toFavorites(selectedpoi)"></span>-->
+                    <!--                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"-->
+                    <!--                          class="glyphicon glyphicon-heart"></span>-->
+                    <!--                </h2>-->
+                </div>
+                <div class="modal-footer">
+                    <button id="ms" type="button" class="btn btn-default" data-dismiss="modal"
+                            ng-clik="AddReview(selectedpoi)">save
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 
 <!--Modal Territory-->
@@ -76,7 +99,6 @@
                 <br/>
                 <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
                 <h2 ng-show="show" style="font-size: 25px">
-
                     <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"
                           ng-click="toFavorites(selectedpoi)"></span>
                     <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"
