@@ -256,6 +256,7 @@ angular.module("myApp")
                     arr2 = $window.sessionStorage.getItem("favoritesname");
                     arr2 = arr2.replace(selectedpoi.poiname + ",", "");
                     arr2 = arr2.replace("," + selectedpoi.poiname, "");
+                    arr2 = arr2.replace(selectedpoi.poiname, "");
                     let x = arr.indexOf(poiId);
                     let b = arr.substring(0, x - 1);
                     let c = arr.substring(x + 1);
