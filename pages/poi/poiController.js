@@ -5,8 +5,9 @@ angular.module("myApp")
         $scope.init = function () {
             let stringArr = "";
             let arr = [];
-            if ($window.sessionStorage.getItem("favoritesname") !== null) {
-                $scope.poiShow.found=true;
+            if ($window.sessionStorage.getItem("favoritesname") !== null && $window.sessionStorage.getItem("favoritesname") !== "") {
+                $scope.poiShow.found = true;
+                $scope.poiShow.notfound = false;
                 stringArr = $window.sessionStorage.getItem("favoritesname");
                 arr = stringArr.split(',');
                 $scope.defer = $q.defer();
@@ -22,15 +23,14 @@ angular.module("myApp")
                         }
                     }
                     $scope.poiShow = tmp;
-                    $scope.showAll();
                 });
+            } else {
+                $scope.poiShow.found = false;
+                $scope.poiShow.notfound = true;
             }
-            else {
-                $scope.poiShow.found=false;
-            }
-
-
+            $scope.showAll();
         };
+
         $scope.getAll = function () {
             let req = {
                 method: 'GET',
@@ -57,7 +57,7 @@ angular.module("myApp")
         }
 
 
-        $scope.addToDB = function (selected) { //for modal function - to know which poi was clicked
+        $scope.addToDB = function (selected) {
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/private/addUserPoi',
@@ -79,24 +79,26 @@ angular.module("myApp")
                     $scope.showMessage = true;
                     let tmp1 = new Array();
                     let tmpString = "";
-                    let tmpNums="";
-                    let num=0;
+                    let tmpNums = "";
+                    let num = 0;
                     for (k = 0; k < $scope.poiShow.length; k++) {
                         if ($scope.poiShow[k].poiname !== selected.poiname) {
                             tmp1.push($scope.poiShow[k]);
                             num++;
-                        }
-                        else{
-                            $scope.poiShow[k].favorites=false;
+                        } else {
+                            $scope.poiShow[k].favorites = false;
                             $scope.poiSaved.push($scope.poiShow[k]);
                         }
                     }
                     $scope.poiShow = tmp1;
+                    // if($scope.poiShow.length===0){
+                    //     $scope.poiShow.found=false;
+                    //     $scope.poiShow.notfound=true;
+                    // }
                     for (k = 0; k < $scope.poiShow.length; k++) {
                         if (k !== 0) {
                             tmpString = tmpString + "," + $scope.poiShow[k].poiname;
                             tmpNums = tmpNums + "," + $scope.poiShow[k].poiId;
-
                         } else {
                             tmpString = $scope.poiShow[k].poiname;
                             tmpNums = $scope.poiShow[k].poiId;
@@ -106,6 +108,19 @@ angular.module("myApp")
                     $window.sessionStorage.setItem("num", num);
                     $window.sessionStorage.setItem("favoritesname", tmpString);
                     $window.sessionStorage.setItem("favorites", tmpNums);
+                    $scope.init();
+
+                    $scope.defer5 = $q.defer();
+                    $scope.getAll2();
+                    $scope.defer5.promise.then(function (arr) {
+                        for (k = 0; k < arr.length; k++) {
+                            if (arr[k].poiId !== selected.poiId) {
+                                $scope.incrementRank(arr[k].poiId, arr[k].cnt);
+                            }
+                        }
+                    });
+
+
                 }
             });
         }
@@ -124,8 +139,8 @@ angular.module("myApp")
                 method: 'POST',
                 url: 'http://localhost:3000/saveRankPoi',
                 data: {
-                    poiId: selected.poiId,
-                    cnt: $scope.rank
+                    poiId: parseInt(selected.poiId),
+                    rank: parseInt($scope.rank)
                 }
             }
             $http(req).then(function (response) {
@@ -134,7 +149,6 @@ angular.module("myApp")
 
                 } else {
                     alert("your rank is saved");
-
                 }
             });
         }
@@ -157,8 +171,8 @@ angular.module("myApp")
                 }
             });
         }
-        
-        $scope.showAll=function () {
+
+        $scope.showAll = function () {
             let req = {
                 method: 'GET',
                 url: 'http://localhost:3000/private/getAllPOIBu',
@@ -169,84 +183,280 @@ angular.module("myApp")
             $http(req).then(function (response) {
                 console.log(response.data);
                 if (response.data === false) {
-                    $scope.poiSaved.found=false;
+                    $scope.poiSaved.found = false;
                 } else {
 
-                    $scope.poiSaved=response.data;
-                    $scope.poiSaved.found=true;
-                    // selected.favorites = true;
-                    // $scope.message = "Your POI is saved";
-                    // $scope.showMessage = true;
-                    // let tmp1 = new Array();
-                    // let tmpString = "";
-                    // let num=0;
-                    //
-                    //
-                    // for (k = 0; k < $scope.poiShow.length; k++) {
-                    //     if ($scope.poiShow[k].poiname !== selected.poiname) {
-                    //         tmp1.push($scope.poiShow[k]);
-                    //         num++;
-                    //     }
-                    // }
-                    // $scope.poiShow = tmp1;
-                    // for (k = 0; k < $scope.poiShow.length; k++) {
-                    //     if (k !== 0) {
-                    //         tmpString = tmpString + "," + $scope.poiShow[k].poiname;
-                    //     } else {
-                    //         tmpString = $scope.poiShow[k].poiname;
-                    //     }
-                    // }
-                    //
-                    // $window.sessionStorage.setItem("num", num);
-                    // $window.sessionStorage.setItem("favoritesname", $scope.poiShow);
+                    $scope.poiSaved = response.data;
+                    $scope.poiSaved.found = true;
                 }
             });
         }
 
-        $scope.deleteFromDB=function (selected) {
+        $scope.deleteFromDB = function (selected) {
             let req = {
-                method: 'GET',
+                method: 'DELETE',
                 url: 'http://localhost:3000/private/deleteUserPoi',
                 headers: {
                     'x-auth-token': $window.sessionStorage.getItem("token")
                 },
                 params: {
-                    poiId: selected.poiId
+                    poiId: parseInt(selected.poiId)
                 }
             }
             $http(req).then(function (response) {
                 console.log(response.data);
-                // if (response.data === false) {
-                //     $scope.poiSaved.found=false;
-                // } else {
-                //     $scope.poiSaved=response.data;
-                //     $scope.poiSaved.found=true;
-                //     for (k = 0; k < $scope.poiShow.length; k++) {
-                //         if ($scope.poiShow[k].poiname !== selected.poiname) {
-                //             tmp1.push($scope.poiShow[k]);
-                //             num++;
-                //         }
-                //         else{
-                //             $scope.poiShow[k].favorites=false;
-                //             $scope.poiSaved.push($scope.poiShow[k]);
-                //         }
-                //     }
-                //     $scope.poiShow = tmp1;
-                //     for (k = 0; k < $scope.poiShow.length; k++) {
-                //         if (k !== 0) {
-                //             tmpString = tmpString + "," + $scope.poiShow[k].poiname;
-                //             tmpNums = tmpNums + "," + $scope.poiShow[k].poiId;
-                //
-                //         } else {
-                //             tmpString = $scope.poiShow[k].poiname;
-                //             tmpNums = $scope.poiShow[k].poiId;
-                //         }
-                //     }
-                //     $window.sessionStorage.setItem("num", num);
-                //     $window.sessionStorage.setItem("favoritesname", tmpString);
-                //     $window.sessionStorage.setItem("favorites", tmpNums);
-                // }
+                if (response.data === false) {
+
+                } else {
+                    let tmp1 = new Array();
+                    let tmpString = "";
+                    let tmpNums = "";
+                    let num = 0;
+                    for (k = 0; k < $scope.poiSaved.length; k++) {
+                        if ($scope.poiSaved[k].poiname !== selected.poiname) {
+                            tmp1.push($scope.poiSaved[k]);
+                        }
+                    }
+                    $scope.poiSaved = tmp1;
+                    $scope.showAll();
+                }
             });
+        }
+
+        $scope.getByrank = function () {
+            let req = {
+                method: 'GET',
+                url: 'http://localhost:3000/private/getAllPOIORnk',
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("token")
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if (response.data === false) {
+                    $scope.poiSaved.found = false;
+                } else {
+                    let tmp = new Array();
+                    for (k = response.data.length - 1; k >= 0; k--) {
+                        tmp.push(response.data[k]);
+                    }
+                    $scope.poiSaved = tmp;
+                    $scope.poiSaved.found = true;
+                }
+            });
+        }
+
+        $scope.selectByCat = function () {
+            if ($scope.cat === "") {
+                $scope.showAll();
+            } else {
+                let req = {
+                    method: 'GET',
+                    url: 'http://localhost:3000/private/getAllPOIOCat',
+                    headers: {
+                        'x-auth-token': $window.sessionStorage.getItem("token")
+                    }
+                }
+                $http(req).then(function (response) {
+                    console.log(response.data);
+                    if (response.data === false) {
+                        $scope.poiSaved.found = false;
+                    } else {
+                        let tmp = new Array();
+                        for (k = 0; k < response.data.length; k++) {
+                            if (response.data[k].category === $scope.cat) {
+                                tmp.push(response.data[k]);
+                            }
+                        }
+                        if (tmp.length === 0) {
+                            $scope.poiSaved = tmp;
+                            $scope.poiSaved.found = false;
+                        } else {
+                            $scope.poiSaved = tmp;
+                            $scope.poiSaved.found = true;
+                        }
+
+
+                    }
+                });
+            }
+        }
+        $scope.getRank = function (poiId, num) {
+            let req = {
+                method: 'GET',
+                url: 'http://localhost:3000/private/getAllPOIBu',
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("token")
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if (response.data === false) {
+                    // $scope.poiSaved.found = false;
+                } else {
+                    let tmp = -1;
+                    let tmpid = null;
+                    let max = 0;
+                    let inMax = null;
+                    let min = 6;
+                    let inMin = null;
+                    let bmax = false;
+                    let bmin = false;
+                    for (k = 0; k < response.data.length; k++) {
+                        if (response.data[k].poiId === poiId) {
+                            tmp = response.data[k].cnt;
+                        }
+                        if (response.data[k].cnt > max) {
+                            max = response.data[k].cnt;
+                            inMax = response.data[k].poiId;
+                            bmax = true;
+                        }
+                        if (response.data[k].cnt < min) {
+                            min = response.data[k].cnt;
+                            inMin = response.data[k].poiId;
+                            bmin = true;
+                        }
+                    }
+                    for (k = 0; k < response.data.length; k++) {
+                        if (bmax && response.data[k].cnt < max && response.data[k].cnt > tmp) {
+                            max = response.data[k].cnt;
+                            inMax = response.data[k].poiId;
+                        }
+                        if (bmin && response.data[k].cnt > min && response.data[k].cnt < tmp) {
+                            min = response.data[k].cnt;
+                            inMin = response.data[k].poiId;
+                        }
+                    }
+
+                    if (num === 1) {
+                        if (bmax) {
+                            if (bmin) {
+                                $scope.defer1.resolve([tmp, max, inMax, min, inMin]);
+                            } else {
+                                $scope.defer1.resolve([tmp, null, null, min, inMin]);
+                            }
+                        } else {
+                            if (bmin) {
+                                $scope.defer1.resolve([tmp, null, null, min, inMin]);
+                            } else {
+                                $scope.defer1.resolve([tmp, null, null, null, null]);
+                            }
+                        }
+                    }
+                    if (num === 2) {
+                        if (bmax) {
+                            if (bmin) {
+                                $scope.defer2.resolve([tmp, max, inMax, min, inMin]);
+                            } else {
+                                $scope.defer2.resolve([tmp, null, null, min, inMin]);
+                            }
+                        } else {
+                            if (bmin) {
+                                $scope.defer2.resolve([tmp, null, null, min, inMin]);
+                            } else {
+                                $scope.defer2.resolve([tmp, null, null, null, null]);
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        $scope.rankUp = function (selected) {
+
+            $scope.defer1 = $q.defer();
+            $scope.getRank(selected.poiId, 1);
+            $scope.defer1.promise.then(function (ind) {
+                if (ind[0] !== -1 && ind[1] !== null && ind[2] !== null && ind[0] !== ind[1]) {
+                    let cnt = ind[1];
+                    let cnt2 = ind[0];
+                    $scope.editRank(selected.poiId, cnt);
+                    $scope.editRank(ind[2], cnt2);
+                }
+            });
+        }
+
+        $scope.rankDown = function (selected) {
+            $scope.defer2 = $q.defer();
+            $scope.getRank(selected.poiId, 2);
+            $scope.defer2.promise.then(function (ind) {
+                if (ind[0] !== -1 && ind[3] !== null && ind[4] !== null && ind[0] !== ind[3]) {
+                    let cnt = ind[3];
+                    let cnt2 = ind[0];
+                    $scope.editRank(selected.poiId, cnt);
+                    $scope.editRank(ind[4], cnt2);
+                }
+            });
+        }
+
+        $scope.editRank = function (poiId, ind) {
+            let req = {
+                method: 'POST',
+                url: 'http://localhost:3000/private/editRank',
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("token")
+                },
+                data: {
+                    poiId: poiId,
+                    indexPoi: parseInt(ind)
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if (response.data === false) {
+                    // $scope.poiSaved.found = false;
+                } else {
+                    let tmp = new Array();
+                    tmp = $scope.showAll();
+                    $scope.poiSaved = tmp;
+                }
+            });
+        }
+
+        $scope.getAll2 = function () {
+            let req = {
+                method: 'GET',
+                url: 'http://localhost:3000/private/getAllPOIBu',
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("token")
+                }
+            }
+            $http(req).then(function (response) {
+                if (response.data === false) {
+
+                } else {
+                    $scope.defer5.resolve(response.data);
+                }
+            });
+        }
+
+        $scope.incrementRank = function (poiId, ind) {
+            let req = {
+                method: 'POST',
+                url: 'http://localhost:3000/private/editRank',
+                headers: {
+                    'x-auth-token': $window.sessionStorage.getItem("token")
+                },
+                data: {
+                    poiId: poiId,
+                    indexPoi: parseInt(ind) + 1
+                }
+            }
+            $http(req).then(function (response) {
+                console.log(response.data);
+                if (response.data === false) {
+                    // $scope.poiSaved.found = false;
+                } else {
+
+                }
+            });
+        }
+
+
+        $scope.orderClick = function () { //for modal function - to know which poi was clicked
+            $scope.orderpoi = true;
+        }
+        $scope.applayClick = function () { //for modal function - to know which poi was clicked
+            $scope.orderpoi = false;
         }
 
     });

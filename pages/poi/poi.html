@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="pages/search/searchStyle.css">
+    <link rel="stylesheet" type="text/css" href="pages/poi/poiStyle.css">
 </head>
 <body>
 <div class="jumbotron text-center" id="welcomeNot">
@@ -9,19 +9,56 @@
         them for the DB
     </h4></h1>
 </div>
+<!--<div id="options" ng-init="getAllReviews()">-->
+<div id="options">
+    <div>
+        <div class="col-sm-4 text-center">
+            <label id="title_cat"><b>Select Category to Show:</b></label>
+            <select ng-model="cat" id="cat" name="cat" ng-change="selectByCat()">
+                <option value="" selected data-default class="sel">All category</option>
+                <option>Eatings</option>
+                <option>Museum</option>
+                <option>Tours</option>
+                <option>Nature and Parks</option>
+            </select>
+        </div>
+        <div class="col-sm-4 text-center">
+            <label id="title_rnk">Sort by Rank
+                <button id="sort" type="button" class="btn"
+                        ng-click="getByrank()">Sort
+                </button>
+            </label>
+        </div>
+<!--        <div class="col-sm-4 text-center">-->
+<!--            <label id="title_sortp">Sort by My order-->
+<!--                <button id="sortp" type="button" class="btn" data-toggle="modal" data-target="#moRank">Sort-->
+<!--                </button>-->
+<!--            </label>-->
+<!--        </div>-->
+        <br>
+        <br>
+
+    </div>
+</div>
+
+
 <div ng-init="init()">
     <div class="row text-center">
         <h1>Favorites Cart</h1><br><br>
-        <h3 ng-hide="poiShow.found">No Favorites in Cart for you</h3>
-        <div ng-repeat="x in poiShow" ng-show="poiShow.found" class="col-sm-4 text-center">
+        <h3 ng-show="poiShow.notfound">No Favorites in Cart for you</h3>
+        <!--                <h3 >No Favorites in Cart for you</h3>-->
+        <!--                <div ng-repeat="x in poiShow"  class="col-sm-4 text-center">-->
+        <div ng-repeat="x in poiShow" ng-hide="poiShow.found" class="col-sm-4 text-center">
             <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)"
                 data-toggle="modal" data-target="#mox"></h2><br>
             <img ng-src="{{ x.picture }}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
-            <button id="saveTodb" type="button" ng-click="addToDB(x)" ng-hide="x.favorites">Add to favorites</button>
-<!--            <button id="saveReviews" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add-->
-<!--                review-->
-<!--            </button>-->
-<!--            <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>-->
+            <button id="saveTodb" type="button" class="btn" ng-click="addToDB(x)" ng-hide="x.favorites">Add to
+                favorites
+            </button>
+            <!--            <button id="saveReviews" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add-->
+            <!--                review-->
+            <!--            </button>-->
+            <!--            <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>-->
         </div>
     </div>
 
@@ -29,60 +66,115 @@
         <br><br><br>
         <h1>Saved Favorites</h1><br><br>
         <h3 ng-hide="poiSaved.found">No saved Favorites for you</h3>
-        <div ng-repeat="x in poiSaved" ng-show="poiSaved.found" class="col-sm-4 text-center" >
+        <div ng-repeat="x in poiSaved | orderBy" ng-show="poiSaved.found" class="col-sm-4 text-center">
             <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)"
-                data-toggle="modal" data-target="#mox"></h2><br>
+                data-toggle="modal" data-target="#mox"></h2><br/>
             <img ng-src="{{ x.picture }}" alt="Image" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox">
-            <button id="saveReviews1" type="button" ng-click="rowClick(x)" data-toggle="modal" data-target="#moS">Add Review</button>
-            <button id="deleteFromDB" type="button" ng-click="deleteFromDB(x)">Delete from Favorites</button>
-<!--            <h4 ng-modal="message" ng-show="x.favorites">{{message}}</h4>-->
+            <br/>
+            <br/>
+            <div>
+                <button id="saveReviews1" type="button" class="btn" ng-click="rowClick(x)" data-toggle="modal"
+                        data-target="#moS">
+                    Add Review
+                </button>
+                <button id="deleteFromDB" type="button" class="btn" ng-click="deleteFromDB(x)">Delete from Favorites
+                </button>
+                <br>
+                <button ng-hide="orderpoi" id="up" type="button" class="glyphicon glyphicon-chevron-left"  data-dismiss="modal"
+                        ng-click="rankUp(x)">
+                </button>
+                <button ng-hide="orderpoi" id="down" type="button" class="glyphicon glyphicon-chevron-right" data-dismiss="modal"
+                        ng-click="rankDown(x)">
+                </button>
+            </div>
+            <br/>
         </div>
+
     </div>
 
 
 </div>
 
 
-<!--Modal Territory-->
-<div id="moS" class="modal fade" role="dialog">
+<!--Modal For Ordering -->
+<div id="moRank" class="modal fade" role="dialog">
     <div class="modal-dialog" style="text-align: center">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">{{selectedpoi.poiname}}</h2>
+                <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">Order your favorites</h2>
             </div>
             <div class="modal-body">
-                <div class="modal-body">
-                    <br/>
-                    <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
-                    <br/><br/><br/>
-                    Rank the POI(1- lowest, 5- highest)<input ng-model="rank" type="text" id="rankpoi"
-                                                              class="fadeIn third" name="rankpoi">
-                    </br>
-                    </br>
-                    Write a review on the POI<input ng-model="review" type="text" id="raviewpoi" class="fadeIn third"
-                                                    name="raviewpoi">
-
-                    <!--                <h2 ng-show="show" style="font-size: 25px">-->
-                    <!--                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"-->
-                    <!--                          ng-click="toFavorites(selectedpoi)"></span>-->
-                    <!--                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"-->
-                    <!--                          class="glyphicon glyphicon-heart"></span>-->
-                    <!--                </h2>-->
-                </div>
-                <div class="modal-footer">
-                    <button id="ms" type="button" class="btn btn-default" data-dismiss="modal"
-                            ng-clik="AddReview(selectedpoi)">save
+                <div ng-repeat="x in poiSaved" class="col-sm-12 text-center">
+                    <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname"></h2><br>
+                    <!--                    <h2 style="color:#cc283a;font-weight: bold; font-size: 25px" ng-bind="x.poiname" ng-click="rowClick(x)" data-toggle="modal" data-target="#mox"></h2><br>-->
+                    <img ng-src="{{x.picture}}" alt="Image" style="width: 60%">
+                    <!--                    <input ng-model="rank" type="text" id="rankmypoi" class="fadeIn third" name="rankpoi">-->
+                    <button id="mrup" type="button" class="btn btn-default" data-dismiss="modal" ng-click="rankUp(x)">
+                        ^
+                    </button>
+                    <button id="mrdown" type="button" class="btn btn-default" data-dismiss="modal"
+                            ng-click="rankDown(x)">|
                     </button>
                 </div>
+                <br/>
+                <div class="modal-footer">
+                    <button id="mr" type="button" class="btn btn-default" data-dismiss="modal">Applay</button>
+                </div>
             </div>
+
         </div>
     </div>
 </div>
 
 
-<!--Modal Territory-->
+<!--Modal for ranking-->
+<div id="moS" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="text-align: center">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <form name="reviweForm" ng-submit="reviweForm.$valid && AddReview(selectedpoi)">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title" style="color:#cc283a;font-weight: bold;">{{selectedpoi.poiname}}</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <br/>
+                        <img ng-src="{{selectedpoi.picture}}" alt="Image" style="width: 60%">
+                        <br/><br/><br/>
+                        Rank the POI(1- lowest, 5- highest)<input ng-model="rank" type="text" id="rankpoi"
+                                                                  class="fadeIn third" name="rankpoi">
+<!--                        </br>Rank the POI(1- lowest, 5- highest)<input ng-model="rank" type="text" id="rankpoi"-->
+<!--                                                                  class="fadeIn third" name="rankpoi" ng-required="true" ng-pattern="/^[0-5]{1,1}$/">-->
+<!--                        <p style="color:red; font-size: 12px; margin:0px 0 0 0" ng-show="reviewForm.rankpoi.$error.pattern">rank must be a number between 1-5</p>-->
+                        </br>
+                        </br>
+                        Write a review on the POI<input ng-model="review" type="text" id="raviewpoi"
+                                                        class="fadeIn third"
+                                                        name="raviewpoi">
+                        <button id="ms" type="submit" class="btn btn-default">save</button>
+<!--                        <button id="ms" type="button" ng-click="AddReview(selectedpoi)" class="btn btn-default"-->
+<!--                                data-dismiss="modal">save-->
+<!--                        </button>-->
+                        <!--                <h2 ng-show="show" style="font-size: 25px">-->
+                        <!--                    <span ng-hide="selectedpoi.isSelected" class="glyphicon glyphicon-heart-empty"-->
+                        <!--                          ng-click="toFavorites(selectedpoi)"></span>-->
+                        <!--                    <span ng-show="selectedpoi.isSelected" ng-click="unFavorites(selectedpoi)"-->
+                        <!--                          class="glyphicon glyphicon-heart"></span>-->
+                        <!--                </h2>-->
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--Modal for poi info-->
 <div id="mox" class="modal fade" role="dialog">
     <div class="modal-dialog" style="text-align: center">
         <!-- Modal content-->

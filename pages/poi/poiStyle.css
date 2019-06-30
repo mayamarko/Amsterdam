@@ -31,12 +31,12 @@ ul, li {
     list-style-type: none;
 }
 
-input[type=text] {
-    background-color: rgba(246, 246, 246, 0.62);
-    text-align: center;
-    font-size: 16px;
-    width: 10px;
-}
+/*input[type=text] {*/
+/*    background-color: rgba(246, 246, 246, 0.62);*/
+/*    text-align: center;*/
+/*    font-size: 16px;*/
+/*    width: 10px;*/
+/*}*/
 
 button {
     background-color: #af677f;
@@ -64,11 +64,6 @@ button:hover {
     width: 40%;
 }
 
-#srch, #srch1 {
-    background: rgba(219, 217, 210, 0.6);
-    padding: 10px;
-}
-
 .modal-body {
     background-image: url("bg1.jpg");
     background-size: cover;
@@ -91,7 +86,7 @@ button:hover {
     color: white;
 }
 
-#title_cat, #title_rnk {
+#title_cat, #title_rnk, #title_sortp {
     font-size: 20px;
     color: #b8636b;
 }
@@ -101,9 +96,6 @@ button:hover {
     padding: 5px 5px 5px 5px;
 }
 
-input[type=checkbox] {
-    transform: scale(1.5);
-}
 
 select {
     background-color: #f6f6f6;
@@ -124,22 +116,7 @@ select::placeholder {
 img {
     /*width: 100px;*/
     /*height: 100px;*/
-    width: 40%;
-    height: 30%;
+    width: 70%;
+    height: 40%;
 }
 
-#eat, #museum, #tours, #parks, #ranks {
-    background: rgba(219, 217, 210, 0.6);
-    padding: 5px 5px 5px 50px;
-}
-
-
-.notification .badge {
-    position: absolute;
-    top: -3px;
-    border-radius: 50%;
-    border-color:  #af677f;
-    border-style: dotted;
-    background: #f6fff4;
-    color: black;
-}
