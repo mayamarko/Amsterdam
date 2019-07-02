@@ -145,12 +145,13 @@ angular.module("myApp")
         }
 
         $scope.AddRank = function (selected) {
+            let rankAdd=(parseInt($scope.rank)-1)*(25);
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/saveRankPoi',
                 data: {
                     poiId: parseInt(selected.poiId),
-                    rank: parseInt($scope.rank)
+                    rank: parseInt(rankAdd)
                 }
             }
             $http(req).then(function (response) {
