@@ -17,9 +17,11 @@ username- adij password- 123fgh
 
 you have 4 diffrent intrests subjuect and 4 diffrent validation questions to choose.
 
-The option search poi lets you search a poi and select poi you want to add to your cart.
+
+In order to see information abour poi you have to press on the picture or the name of the poi.
+The option Search POI lets you search a poi and select poi you want to add to your cart.
 You can sort the pois by rank and select pois by categories.
 When choosing poi to add to favorites you need to press on the empty heart and to cancel press on the full heart.
 After pressing on empty heart select in the top of the page the button 'favorites' that has number on it'
-You will be directed to the favorites page where you can decide which poi on the cart to save permenantly.
+You will be redirected to the POI page where you can decide which poi on the cart to save permenantly.
 After it has been saved a regiserd user have the option to add review, delete it from saved and order the presented poi in selected order using the errows buttons.
