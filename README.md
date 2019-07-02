@@ -25,3 +25,5 @@ When choosing poi to add to favorites you need to press on the empty heart and t
 After pressing on empty heart select in the top of the page the button 'favorites' that has number on it'
 You will be redirected to the POI page where you can decide which poi on the cart to save permenantly.
 After it has been saved a regiserd user have the option to add review, delete it from saved and order the presented poi in selected order using the errows buttons.
+
+*as requested it is possible to log in with username a password a.
