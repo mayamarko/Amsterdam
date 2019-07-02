@@ -1,8 +1,12 @@
 angular.module("myApp")
     .controller("poiController", function ($scope, $http, $window, $q) {
         $scope.poiShow = [];
+        $scope.poiCartMess = "";
+        $scope.poiSavedMess = "";
         $scope.poiSaved = [];
         $scope.init = function () {
+            $scope.poiCartMess.sho = true;
+            $scope.poiSavedMess.sho = true;
             let stringArr = "";
             let arr = [];
             if ($window.sessionStorage.getItem("favoritesname") !== null && $window.sessionStorage.getItem("favoritesname") !== "") {
@@ -132,6 +136,7 @@ angular.module("myApp")
             if ($scope.review != null) {
                 $scope.AddReviewDB(selected);
             }
+            $scope.clearM();
         }
 
         $scope.AddRank = function (selected) {
@@ -167,7 +172,8 @@ angular.module("myApp")
                 if (response.data === false) {
 
                 } else {
-                    alert("your rank is saved");
+
+
                 }
             });
         }
@@ -181,7 +187,7 @@ angular.module("myApp")
                 }
             }
             $http(req).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data === false) {
                     $scope.poiSaved.found = false;
                 } else {
@@ -451,7 +457,11 @@ angular.module("myApp")
             });
         }
 
+        $scope.clearM = function () {
+         $scope.rank="";
+         $scope.review="";
 
+        }
         $scope.orderClick = function () { //for modal function - to know which poi was clicked
             $scope.orderpoi = true;
         }

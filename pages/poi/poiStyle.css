@@ -4,7 +4,7 @@
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
-    background-image: url("bg1.jpg");
+    background-image: url("bg5.jpg");
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -65,7 +65,7 @@ button:hover {
 }
 
 .modal-body {
-    background-image: url("bg1.jpg");
+    background-image: url("bg5.jpg");
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -74,14 +74,13 @@ button:hover {
 }
 
 
-#mb, #mx{
+#ms, #mx, #mr, #msc {
     background-color: #af677f;
     color: white;
 }
 
 
-
-#mb, #mx:hover {
+#ms, #mx, #mr,#msc:hover {
     background-color: rgba(175, 103, 127, 0.69);
     color: white;
 }
