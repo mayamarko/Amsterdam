@@ -4,7 +4,9 @@ angular.module("myApp")
         $scope.poiCartMess = "";
         $scope.poiSavedMess = "";
         $scope.poiSaved = [];
+
         $scope.init = function () {
+            $scope.getAllReviews();
             $scope.poiCartMess.sho = true;
             $scope.poiSavedMess.sho = true;
             let stringArr = "";
@@ -27,6 +29,11 @@ angular.module("myApp")
                         }
                     }
                     $scope.poiShow = tmp;
+                    for (i = 0; i < $scope.poiShow.length; i++) {
+                        if ($scope.reviews[$scope.poiShow[i].poiId] !== false) {
+                            $scope.poiShow[i].reviews = $scope.reviews[$scope.poiShow[i].poiId];
+                        }
+                    }
                 });
             } else {
                 $scope.poiShow.found = false;
@@ -50,8 +57,6 @@ angular.module("myApp")
 
                     $scope.pois = response.data;
                     $scope.defer.resolve();
-
-
                 }
             });
 
@@ -194,6 +199,11 @@ angular.module("myApp")
 
                     $scope.poiSaved = response.data;
                     $scope.poiSaved.found = true;
+                    for (i = 0; i < $scope.poiSaved.length; i++) {
+                        if ($scope.reviews[$scope.poiSaved[i].poiId] !== false) {
+                            $scope.poiSaved[i].reviews = $scope.reviews[$scope.poiSaved[i].poiId];
+                        }
+                    }
                 }
             });
         }
@@ -245,9 +255,15 @@ angular.module("myApp")
                     let tmp = new Array();
                     for (k = response.data.length - 1; k >= 0; k--) {
                         tmp.push(response.data[k]);
+
                     }
                     $scope.poiSaved = tmp;
                     $scope.poiSaved.found = true;
+                    for (i = 0; i < $scope.poiSaved.length; i++) {
+                        if ($scope.reviews[$scope.poiSaved[i].poiId] !== false) {
+                            $scope.poiSaved[i].reviews = $scope.reviews[$scope.poiSaved[i].poiId];
+                        }
+                    }
                 }
             });
         }
@@ -279,7 +295,11 @@ angular.module("myApp")
                             $scope.poiSaved.found = false;
                         } else {
                             $scope.poiSaved = tmp;
-                            $scope.poiSaved.found = true;
+                            $scope.poiSaved.found = true;  for (i = 0; i < $scope.poiSaved.length; i++) {
+                                if ($scope.reviews[$scope.poiSaved[i].poiId] !== false) {
+                                    $scope.poiSaved[i].reviews = $scope.reviews[$scope.poiSaved[i].poiId];
+                                }
+                            }
                         }
 
 
@@ -418,6 +438,7 @@ angular.module("myApp")
             });
         }
 
+
         $scope.getAll2 = function () {
             let req = {
                 method: 'GET',
@@ -469,6 +490,29 @@ angular.module("myApp")
             $scope.orderpoi = false;
         }
 
+        $scope.getAllReviews = function () {
+            var promises = [];
+            let rvws = new Array(20);
+            rvws[0] = false;
+            for (let i = 1; i <= 20; i++) {
+                let req = {
+                    method: 'GET',
+                    url: 'http://localhost:3000/getReviewPOI',
+                    params: {
+                        poiId: i,
+                    }
+                }
+                let promise = $http(req).then(function (response) {
+                    let send = response.data;
+                    rvws[i] = send;
+                    // console.log(send);
+                });
+                promises.push(promise);
+            }
+            $q.all(promises).then(function (resp) {
+                $scope.reviews = rvws;
+            });
+        }
     });
 
 
