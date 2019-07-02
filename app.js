@@ -45,10 +45,6 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/search/search.html',
             controller : 'searchController as searchCtrl'
         })
-        .when('/work', {
-            templateUrl: 'pages/work/work.html',
-            controller : 'workController as workCtrl'
-        })
         .when('/homeRegistered', {
             templateUrl: 'pages/homeRegistered/homeRegistered.html',
             controller : 'homeRegisteredController as homeRegisteredCtrl'

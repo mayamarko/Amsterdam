@@ -71,7 +71,7 @@ img {
     border-radius: 10px;
 }
 img {
-    width: 60%;
+    width: 70%;
     height: 40%;
 }
 
@@ -118,3 +118,4 @@ img {
     background-color: rgba(214, 120, 128, 0.85);
     color: white;
 }
+.thumbnail img { height:35%; width:90%; }
