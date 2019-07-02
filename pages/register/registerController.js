@@ -6,6 +6,7 @@ angular.module("myApp")
             let q2 = $scope.question2;
             let intrests = "";
             var count = 0;
+            let conti=true;
             if ($scope.checkbox1) {
                 if (intrests === "")
                     intrests = "Museum";
@@ -34,10 +35,15 @@ angular.module("myApp")
                     intrests = intrests + ",Nature and Parks";
                 count++;
             }
-            if (count < 2) {
-                $scope.err = true;
+            if(q1===q2){
+                $scope.err2=true;
+                conti=false;
             }
-            else {
+             if (count < 2) {
+                $scope.err = true;
+                conti=false;
+            }
+            if(conti===true) {
                 let req = {
                     method: 'POST',
                     url: "http://localhost:3000/Register",

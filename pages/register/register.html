@@ -38,7 +38,7 @@
                     <div class="input-group">
                         <input class="input--style-3 tmp" ng-model="username" type="text" placeholder="User Name"
                                name="username" style="" ng-required="true" ng-pattern="/^[a-zA-Z]{3,8}$/" >
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.username.$error.pattern">Not The username must contains 3-8 letter only</p>
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.username.$error.pattern">The username must contains 3-8 letter only</p>
 
 
                         <input class="input--style-3 tmp" ng-model="password" type="password" placeholder="Your Password"
@@ -99,7 +99,7 @@
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-required="true" ng-model="question2" id="question2" name="question2"
-                                    class="rs-select2 js-select-simple select--no-search">
+                                    class="rs-select2 js-select-simple select--no-search" >
                                 <option value="" selected data-default class="sel">Select Your Confirmation Question
                                 </option>
                                 <option>What is the name of your first pet</option>
@@ -108,6 +108,8 @@
                                 <option>What is your favorite high school teachers name</option>
                             </select>
                             <div class="select-dropdown"></div>
+<!--                            <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.question2.match">The username must contains 3-8 letter only</p>-->
+                            <p ng-show="err2" style="color:red;">You must choose 2 diffrent  verifiction questions</p>
                         </div>
 
                         <input class="input--style-3" ng-model="answer2" type="text" placeholder="Your Answer"
