@@ -1,6 +1,17 @@
 angular.module("myApp")
     .controller("searchController", function ($scope, $http, $window, $q, views) {
 
+        $scope.onInit = function () {
+            $scope.getAllReviews();
+            if ($window.sessionStorage.getItem("name") !== null) {
+                $scope.saved();
+            }
+            $scope.getByCategory('Eatings');
+            $scope.getByCategory('Museum');
+            $scope.getByCategory('Tours');
+            $scope.getByCategory('Nature and Parks');
+        };
+
         $scope.searchIt = function () { //for searching by name
             let req = {
                 method: 'GET',
@@ -29,9 +40,13 @@ angular.module("myApp")
                     $scope.src = response.data[0].picture;
                     $scope.poid = response.data[0].poiId;
                     $scope.all.isSelected = false;
-                    if ($window.sessionStorage.getItem("favorites") !== null) {
-                        let array = $window.sessionStorage.getItem("favorites").split(",");
-                        $scope.all.isSelected = ($scope.isSaved($scope.poid)) || (array.includes($scope.poid.toString())); //add the saved!!!!!
+                    $scope.all.isSaved = false;
+                    if ($window.sessionStorage.getItem("name") !== null) {
+                        if ($window.sessionStorage.getItem("favorites") !== null) {
+                            let array = $window.sessionStorage.getItem("favorites").split(",");
+                            $scope.all.isSelected = ($scope.isSaved($scope.poid)) || (array.includes($scope.poid.toString())); //add the saved!!!!!
+                        }
+                        $scope.all.isSaved = $scope.isSaved($scope.poid);
                     }
                     if ($scope.reviews[$scope.poid] !== false) {
                         $scope.all.reviews = $scope.reviews[$scope.poid];
@@ -46,6 +61,8 @@ angular.module("myApp")
                 }
             });
         };
+
+
         $scope.getByCategory = function (category) { //first function that works - showing by category the poi && handles the favorites
             let req = {
                 method: 'GET',
@@ -63,52 +80,32 @@ angular.module("myApp")
                 }
                 if (category === "Eatings") {
                     $scope.pois = response.data;
-                    // $scope.defer = $q.defer();
-                    // $scope.defer.promise.then(function () {
                     for (let i = 0; i < 5; i++) {
-                        // $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
-                        // $scope.pois[i].isSaved = $scope.isSaved($scope.pois[i].poiId);
                         if ($scope.reviews[$scope.pois[i].poiId] !== false) {
                             $scope.pois[i].reviews = $scope.reviews[$scope.pois[i].poiId];
                         }
                     }
-                    // });
                 } else if (category === "Museum") {
                     $scope.pois1 = response.data;
-                    // $scope.defer1 = $q.defer();
-                    // $scope.defer1.promise.then(function () {
                     for (let i = 0; i < 5; i++) {
-                        // $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
-                        // $scope.pois1[i].isSaved = $scope.isSaved($scope.pois1[i].poiId);
                         if ($scope.reviews[$scope.pois1[i].poiId] !== false) {
                             $scope.pois1[i].reviews = $scope.reviews[$scope.pois1[i].poiId];
                         }
                     }
-                    // });
                 } else if (category === "Tours") {
                     $scope.pois2 = response.data;
-                    // $scope.defer2 = $q.defer();
-                    // $scope.defer2.promise.then(function () {
                     for (let i = 0; i < 5; i++) {
-                        // $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
-                        // $scope.pois2[i].isSaved = $scope.isSaved($scope.pois2[i].poiId);
                         if ($scope.reviews[$scope.pois2[i].poiId] !== false) {
                             $scope.pois2[i].reviews = $scope.reviews[$scope.pois2[i].poiId];
                         }
                     }
-                    // });
                 } else if (category === "Nature and Parks") {
                     $scope.pois3 = response.data;
-                    // $scope.defer3 = $q.defer();
-                    // $scope.defer3.promise.then(function () {
                     for (let i = 0; i < 5; i++) {
-                        // $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
-                        // $scope.pois3[i].isSaved = $scope.isSaved($scope.pois3[i].poiId);
                         if ($scope.reviews[$scope.pois3[i].poiId] !== false) {
                             $scope.pois3[i].reviews = $scope.reviews[$scope.pois3[i].poiId];
                         }
                     }
-                    // });
                 }
                 if ($window.sessionStorage.getItem("num") !== null) {
                     $scope.number = $window.sessionStorage.getItem("num");
@@ -137,8 +134,10 @@ angular.module("myApp")
                 $scope.ts = true;
                 $scope.ps = true;
                 $scope.rs = false;
-                for (let i = 0; i < 5; i++) {
-                    $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
+                if ($window.sessionStorage.getItem("name") !== null) {
+                    for (let i = 0; i < 5; i++) {
+                        $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
+                    }
                 }
             } else if ($scope.cat === "Museum") {
                 $scope.es = true;
@@ -146,8 +145,10 @@ angular.module("myApp")
                 $scope.ts = true;
                 $scope.ps = true;
                 $scope.rs = false;
-                for (let i = 0; i < 5; i++) {
-                    $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
+                if ($window.sessionStorage.getItem("name") !== null) {
+                    for (let i = 0; i < 5; i++) {
+                        $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
+                    }
                 }
             } else if ($scope.cat === "Tours") {
                 $scope.ts = false;
@@ -155,8 +156,10 @@ angular.module("myApp")
                 $scope.es = true;
                 $scope.ps = true;
                 $scope.rs = false;
-                for (let i = 0; i < 5; i++) {
-                    $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
+                if ($window.sessionStorage.getItem("name") !== null) {
+                    for (let i = 0; i < 5; i++) {
+                        $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
+                    }
                 }
             } else if ($scope.cat === "Nature and Parks") {
                 $scope.ps = false;
@@ -164,8 +167,10 @@ angular.module("myApp")
                 $scope.ts = true;
                 $scope.es = true;
                 $scope.rs = false;
-                for (let i = 0; i < 5; i++) {
-                    $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
+                if ($window.sessionStorage.getItem("name") !== null) {
+                    for (let i = 0; i < 5; i++) {
+                        $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
+                    }
                 }
             } else {
                 $scope.es = false;
@@ -173,11 +178,13 @@ angular.module("myApp")
                 $scope.ts = false;
                 $scope.ps = false;
                 $scope.rs = false;
-                for (let i = 0; i < 5; i++) {
-                    $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
-                    $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
-                    $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
-                    $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
+                if ($window.sessionStorage.getItem("name") !== null) {
+                    for (let i = 0; i < 5; i++) {
+                        $scope.pois[i].isSelected = ($scope.isSaved($scope.pois[i].poiId)) || (needCheck && array.includes($scope.pois[i].poiId.toString()));
+                        $scope.pois1[i].isSelected = ($scope.isSaved($scope.pois1[i].poiId)) || (needCheck && array.includes($scope.pois1[i].poiId.toString()));
+                        $scope.pois2[i].isSelected = ($scope.isSaved($scope.pois2[i].poiId)) || (needCheck && array.includes($scope.pois2[i].poiId.toString()));
+                        $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
+                    }
                 }
             }
         };
@@ -196,8 +203,10 @@ angular.module("myApp")
                 }
                 $scope.pois4 = response.data;
                 for (let i = 0; i < 20; i++) {
-                    $scope.pois4[i].isSelected = ($scope.isSaved($scope.pois4[i].poiId)) || (needCheck && array.includes($scope.pois4[i].poiId.toString()));
-                    $scope.pois4[i].isSaved = $scope.isSaved($scope.pois4[i].poiId);
+                    if ($window.sessionStorage.getItem("name") !== null) {
+                        $scope.pois4[i].isSelected = ($scope.isSaved($scope.pois4[i].poiId)) || (needCheck && array.includes($scope.pois4[i].poiId.toString()));
+                        $scope.pois4[i].isSaved = $scope.isSaved($scope.pois4[i].poiId);
+                    }
                     if ($scope.reviews[$scope.pois4[i].poiId] !== false) {
                         $scope.pois4[i].reviews = $scope.reviews[$scope.pois4[i].poiId];
                     }
@@ -232,9 +241,6 @@ angular.module("myApp")
                     }
                     selectedpoi.isSelected = true;
                     $scope.number++;
-                    // } else {
-                    //     selectedpoi.isSelected = false;
-                    // }
                 } else {
                     arr = poiId;
                     arr2 = selectedpoi.poiname;
@@ -312,19 +318,6 @@ angular.module("myApp")
                         $scope.pois3[i].isSelected = ($scope.isSaved($scope.pois3[i].poiId)) || (needCheck && array.includes($scope.pois3[i].poiId.toString()));
                         $scope.pois3[i].isSaved = $scope.isSaved($scope.pois3[i].poiId);
                     }
-
-                    // if ($scope.defer != null) {
-                    //     $scope.defer.resolve();
-                    // }
-                    // if ($scope.defer1 != null) {
-                    //     $scope.defer1.resolve();
-                    // }
-                    // if ($scope.defer2 != null) {
-                    //     $scope.defer2.resolve();
-                    // }
-                    // if ($scope.defer3 != null) {
-                    //     $scope.defer3.resolve();
-                    // }
                 });
             } else { //it is unregistered user
                 $scope.savedPoi = [{poiId: 50}, {poiId: 50}, {poiId: 50}, {poiId: 50}];
@@ -368,15 +361,5 @@ angular.module("myApp")
                 $scope.reviews = rvws;
             });
         }
-
-        // $scope.getByPoi = function (poid) {
-        //     let revs = [];
-        //     for (let i = 0; i < reviews.length; i++) {
-        //         if ($scope.reviews[i].poiId === poid) {
-        //             revs.push(reviews[i]);
-        //         }
-        //     }
-        //     return revs;
-        // }
 
     });
