@@ -4,7 +4,7 @@
 body {
     font-family: "Poppins", sans-serif;
     height: 100vh;
-    background-image: url("bg5.jpg");
+    background-image: url("bg6.jpg");
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -55,7 +55,7 @@ button:hover {
 
 .jumbotron {
     color: black;
-    background-color: rgba(219, 217, 210, 0.6);
+    background-color: rgba(174, 171, 175, 0.54);
 }
 
 .input-group {
@@ -91,10 +91,12 @@ button:hover {
 }
 
 #options {
-    background-color: rgba(219, 218, 203, 0.84);
+    background-color: rgba(126, 123, 127, 0.47);
     padding: 5px 5px 5px 5px;
 }
-
+.row{
+    background-color: rgba(174, 171, 175, 0.54);
+}
 
 select {
     background-color: #f6f6f6;
