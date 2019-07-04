@@ -3,7 +3,7 @@ welcome to our site - the city we selected is **Amsterdam** in the Netherlands.
 
 In order to use the site it is always a good idea to log in or register to get the full site functionality.
 
-Exciting users:
+Existing users:
 
 username- qqqq password- 123asd
 
