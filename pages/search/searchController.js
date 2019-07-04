@@ -1,24 +1,18 @@
 angular.module("myApp")
     .controller("searchController", function ($scope, $http, $window, $q, views) {
 
-            $scope.onInit = function () {
-                // $scope.getAllReviews();
-                // if ($window.sessionStorage.getItem("name") !== null) {
-                //     $scope.saved();
-                // $scope.getByCategory('Eatings');
-                // $scope.getByCategory('Museum');
-                // $scope.getByCategory('Tours');
-                // $scope.getByCategory('Nature and Parks');
+            $scope.onInit = function () { // Initialization function of the page!
                 $scope.defer = $q.defer();
                 $scope.getAllReviews();
                 $scope.defer.promise.then(function () {
-                    if ($window.sessionStorage.getItem("name") !== null) {
-                        $scope.saved();
-                    }
                     $scope.getByCategory('Eatings');
                     $scope.getByCategory('Museum');
                     $scope.getByCategory('Tours');
                     $scope.getByCategory('Nature and Parks');
+                    if ($window.sessionStorage.getItem("name") !== null) {
+                        $scope.saved();
+                    }
+
                 });
 
 

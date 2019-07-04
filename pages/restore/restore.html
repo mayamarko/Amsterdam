@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Restore password</title>
-    <link rel="stylesheet" type="text/css" href="pages/restore/restoreStyle.css">
-    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="pages/restore/restoreStyle.css">
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <!-- Tabs Titles -->
         <h2 class="active"> Restore Password </h2>
-
-        <!--&lt;!&ndash; Icon &ndash;&gt;-->
-        <!--<div class="fadeIn first">-->
-        <!--<img id="icon" alt="User Icon"/>-->
-        <!--</div>-->
-
-        <!-- Login Form -->
         <form>
             <h4 id="title_name" class="fadeIn first">Enter your username</h4>
             <input ng-model="username" type="text" id="username" class="fadeIn first" name="username"
@@ -36,7 +20,6 @@
             <h4 ng-show="show1" id="title_password" class="fadeIn first">Your Password</h4>
             <Label ng-show="show" ng-model="pass" type="text" id="pass" class="fadeIn second"
                    name="pass">{{pass.label}}</Label>
-
             <br/>
         </form>
         <div ng-show="show" id="formFooter">
@@ -47,5 +30,3 @@
 
 </div>
 <script src="pages/restore/restoreController.js"></script>
-</body>
-</html>

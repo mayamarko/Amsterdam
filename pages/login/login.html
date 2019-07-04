@@ -1,32 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Login</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="pages/login/loginStyle.css">
-    <!--===============================================================================================-->
-</head>
-<body ng-app="myApp">
+<link rel="stylesheet" type="text/css" href="pages/login/loginStyle.css">
 <div class="wrapper fadeInDown">
     <div id="formContent">
-        <!-- Tabs Titles -->
         <h2 class="active"> Sign In </h2>
-
-        <!--&lt;!&ndash; Icon &ndash;&gt;-->
-        <!--<div class="fadeIn first">-->
-            <!--<img  id="icon" alt="User Icon"/>-->
-        <!--</div>-->
-
-        <!-- Login Form -->
         <form>
-            <input ng-model="username" type="text" id="username" class="fadeIn second" name="username" placeholder="username">
-            <input ng-model="password" type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input ng-model="username" type="text" id="username" class="fadeIn second" name="username"
+                   placeholder="username">
+            <input ng-model="password" type="password" id="password" class="fadeIn third" name="password"
+                   placeholder="password">
             <h4 ng-show="show" ng-model="fal" type="text" id="fal" class="fadeIn first" name="fal">{{fal}}</h4>
             <input type="submit" ng-click="logIn()" class="fadeIn fourth" value="Log In">
         </form>
 
-        <!-- Remind Passowrd -->
+        <!-- Remind Password -->
         <div id="formFooter">
             <a class="underlineHover" href="#!restore">Forgot Password?</a>
         </div>
@@ -35,6 +20,3 @@
 </div>
 
 <script src="pages/login/loginController.js"></script>
-
-</body>
-</html>

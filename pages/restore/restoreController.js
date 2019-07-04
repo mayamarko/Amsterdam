@@ -1,5 +1,5 @@
 angular.module("myApp")
-    .controller("restoreController", function ($scope, $http, $window) {
+    .controller("restoreController", function ($scope, $http) {
         $scope.restore = function () {
             let req = {
                 method: 'POST',
@@ -12,12 +12,11 @@ angular.module("myApp")
             }
             $http(req).then(function (response) {
                 console.log(response.data);
-                if(response.data===false){
+                if (response.data === false) {
                     $scope.pass = {
                         label: "One or more Details are in correct!"
                     }
-                }
-                else {
+                } else {
                     $scope.pass = {
                         label: response.data
                     }

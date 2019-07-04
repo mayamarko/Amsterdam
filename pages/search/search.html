@@ -1,17 +1,9 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--<meta charset="UTF-8">-->
-<!--<title>Search POI</title>-->
-<!--<link rel="stylesheet" type="text/css" href="pages/search/searchStyle.css">-->
-<!--</head>-->
-<!--<body>-->
 <link rel="stylesheet" type="text/css" href="pages/search/searchStyle.css">
-<div class="jumbotron text-center" id="welcomeNot" ng-init="onInit()"> <!--ng-init="saved()"-->
+<div class="jumbotron text-center" id="welcomeNot" ng-init="onInit()">
     <h1 style="font-weight: bold;">Amsterdam! <h4 style="font-weight: bold;">All you need to know for your next
         Trip..</h4></h1>
 </div>
-<div id="options"> <!-- ng-init="getAllReviews()"-->
+<div id="options">
     <div id="limitation" class="col-sm-6 text-center">
         <div class="col-sm-8 text-center">
             <label id="title_cat"><b>Select Category to Show:</b></label>
@@ -84,7 +76,7 @@
 </div>
 
 
-<div ng-hide="es" id="eat"> <!--ng-init="getByCategory('Eatings')"-->
+<div ng-hide="es" id="eat">
     <br/>
     <h1 style="color:black;font-weight: bold;">Eatings</h1>
     <br/>
@@ -111,7 +103,7 @@
     </div>
 </div>
 
-<div ng-hide="ms" id="museum"> <!--ng-init="getByCategory('Museum')"---->
+<div ng-hide="ms" id="museum">
     <br/>
     <h1 style="color:black;font-weight: bold;">Museum</h1>
     <br/>
@@ -138,7 +130,7 @@
     </div>
 </div>
 
-<div ng-hide="ts" id="tours"> <!--ng-init="getByCategory('Tours')"--->
+<div ng-hide="ts" id="tours">
     <br/>
     <h1 style="color:black;font-weight: bold;">Tours</h1>
     <br/>
@@ -165,7 +157,7 @@
     </div>
 </div>
 
-<div ng-hide="ps" id="parks"> <!--ng-init="getByCategory('Nature and Parks')"-->
+<div ng-hide="ps" id="parks">
     <br/>
     <h1 style="color:black;font-weight: bold;">Nature and Parks</h1>
     <br/>
@@ -258,5 +250,3 @@
 </div>
 
 <script src="pages/search/searchController.js"></script>
-<!--</body>-->
-<!--</html>-->
