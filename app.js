@@ -8,6 +8,11 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
         })
+        //abouy
+        .when('/about', {
+            templateUrl: 'pages/about/about.html',
+            controller : 'aboutController as aboutCtrl'
+        })
         // poi
         .when('/poi', {
             templateUrl: 'pages/poi/poi.html',
