@@ -1,34 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Required meta tags-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--    <meta name="description" content="Colorlib Templates">-->
-    <!--    <meta name="author" content="Colorlib">-->
-    <!--    <meta name="keywords" content="Colorlib Templates">-->
+<!-- Title Page-->
+<title>Register</title>
 
-    <!-- Title Page-->
-    <title>Register</title>
+<!-- Icons font CSS-->
+<link href="pages/register/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="pages/register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<!-- Font special for pages-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet">
 
-    <!-- Icons font CSS-->
-    <link href="pages/register/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="pages/register/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
+<!-- Vendor CSS-->
+<link href="pages/register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
+<!--    <link href="pages/register/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">-->
 
-    <!-- Vendor CSS-->
-    <link href="pages/register/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <!--    <link href="pages/register/vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">-->
+<!-- Main CSS-->
+<link href="pages/register/css/main.css" rel="stylesheet" media="all">
+<!--</head>-->
 
-    <!-- Main CSS-->
-    <link href="pages/register/css/main.css" rel="stylesheet" media="all">
-</head>
-
-<body ng-app="myApp">
-<div class="page-wrapper"> <!--bg-gra-01 p-t-180 p-b-100 font-poppins--->
+<!--<body ng-app="myApp">-->
+<div ng-app="myApp" class="page-wrapper"> <!--bg-gra-01 p-t-180 p-b-100 font-poppins--->
     <div class="wrapper wrapper--w780">
         <div class="card card-3">
             <div class="card-heading"></div>
@@ -37,24 +30,31 @@
                 <form name="myForm" ng-submit="myForm.$valid && submit()">
                     <div class="input-group">
                         <input class="input--style-3 tmp" ng-model="username" type="text" placeholder="User Name"
-                               name="username" style="" ng-required="true" ng-pattern="/^[a-zA-Z]{3,8}$/" >
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.username.$error.pattern">The username must contains 3-8 letter only</p>
+                               name="username" style="" ng-required="true" ng-pattern="/^[a-zA-Z]{3,8}$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0"
+                           ng-show="myForm.username.$error.pattern">The username must contains 3-8 letter only</p>
 
 
-                        <input class="input--style-3 tmp" ng-model="password" type="password" placeholder="Your Password"
-                               name="password"ng-required="true" ng-pattern="/^[a-zA-Z0-9]{5,10}$/">
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.password.$error.pattern">Password must contains 5-10 characters</p>
+                        <input class="input--style-3 tmp" ng-model="password" type="password"
+                               placeholder="Your Password"
+                               name="password" ng-required="true" ng-pattern="/^[a-zA-Z0-9]{5,10}$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0"
+                           ng-show="myForm.password.$error.pattern">Password must contains 5-10 characters</p>
 
                         <input class="input--style-3 tmp" ng-model="fname" type="text" placeholder="First Name"
                                name="fname" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.fname.$error.pattern">First name must be letter only</p>
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.fname.$error.pattern">
+                            First name must be letter only</p>
 
-                        <input class="input--style-3 tmp" ng-model="lname" type="text" placeholder="Last Name" name="lname" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.lname.$error.pattern">Last name must be letter only</p>
+                        <input class="input--style-3 tmp" ng-model="lname" type="text" placeholder="Last Name"
+                               name="lname" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.lname.$error.pattern">
+                            Last name must be letter only</p>
 
                         <input class="input--style-3 tmp" ng-model="city" type="text" placeholder="City of Residence"
-                               name="city"ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.city.$error.pattern">City must be letter only</p>
+                               name="city" ng-required="true" ng-pattern="/^[a-zA-Z\s-]+$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.city.$error.pattern">
+                            City must be letter only</p>
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-model="country" id="country" name="country"
@@ -77,8 +77,11 @@
                             <div class="select-dropdown"></div>
                         </div>
 
-                        <input class="input--style-3 tmp" ng-model="email" type="email" placeholder="Email" name="email" ng-required="true" ng-pattern="/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/">
-                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.email.$error.pattern">Wrong email type</p>
+                        <input class="input--style-3 tmp" ng-model="email" type="email" placeholder="Email" name="email"
+                               ng-required="true"
+                               ng-pattern="/^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/">
+                        <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.email.$error.pattern">
+                            Wrong email type</p>
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-model="question1" id="question1" name="question1"
@@ -93,13 +96,14 @@
                             <div class="select-dropdown"></div>
                         </div>
 
-                        <input class="input--style-3 tmp" ng-required="true" ng-model="answer1" type="text" placeholder="Your Answer"
+                        <input class="input--style-3 tmp" ng-required="true" ng-model="answer1" type="text"
+                               placeholder="Your Answer"
                                name="answer1">
 
 
                         <div class="rs-select2 js-select-simple select&#45;&#45;no-search">
                             <select ng-required="true" ng-model="question2" id="question2" name="question2"
-                                    class="rs-select2 js-select-simple select--no-search" >
+                                    class="rs-select2 js-select-simple select--no-search">
                                 <option value="" selected data-default class="sel">Select Your Confirmation Question
                                 </option>
                                 <option>What is the name of your first pet</option>
@@ -108,8 +112,7 @@
                                 <option>What is your favorite high school teachers name</option>
                             </select>
                             <div class="select-dropdown"></div>
-<!--                            <p style="color:red; font-size: 12px; margin:-30px 0 0 0" ng-show="myForm.question2.match">The username must contains 3-8 letter only</p>-->
-                            <p ng-show="err2" style="color:red;">You must choose 2 diffrent  verifiction questions</p>
+                            <p ng-show="err2" style="color:red;">You must choose 2 diffrent verifiction questions</p>
                         </div>
 
                         <input class="input--style-3" ng-model="answer2" type="text" placeholder="Your Answer"
@@ -151,19 +154,12 @@
 </div>
 
 
-
-
-<!-- Jquery JS-->
-<!--    <script src="pages/register/vendor/jquery/jquery.min.js"></script>-->
 <!-- Vendor JS-->
 <script src="pages/register/vendor/select2/select2.min.js"></script>
-<!--    <script src="pages/register/vendor/datepicker/moment.min.js"></script>-->
-<!--    <script src="pages/register/vendor/datepicker/daterangepicker.js"></script>-->
+
 
 <!-- Main JS-->
 <script src="pages/register/js/global.js"></script>
 <script src="pages/register/registerController.js"></script>
 
-</body>
 
-</html>

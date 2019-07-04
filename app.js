@@ -8,12 +8,6 @@ app.config(function($routeProvider)  {
             templateUrl: 'pages/home/home.html',
             controller : 'homeController as homeCtrl'
         })
-        // about
-        .when('/about', {
-            // this is a template url
-            templateUrl: 'pages/about/about.html',
-            controller : 'aboutController as abtCtrl'
-        })
         // poi
         .when('/poi', {
             templateUrl: 'pages/poi/poi.html',

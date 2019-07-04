@@ -1,6 +1,6 @@
 angular.module("myApp")
     .controller("registerController", function ($scope, $http, $window) {
-        $scope.submit = function () {
+        $scope.submit = function () { //submitting the form function
             let country = $scope.country;
             let q1 = $scope.question1;
             let q2 = $scope.question2;
@@ -76,45 +76,5 @@ angular.module("myApp")
                 });
             }
         };
-        //
-        // $scope.validation = function (username, fname, lname, city, email, q1, q2, password) {
-        //     if (!isValidUsername(username)) {
-        //         return "The username must contains 3-8 letter only!"
-        //     }
-        //     if (!isValidPassword(password)) {
-        //         return "Password must contains 5-10 characters"
-        //     }
-        //     if (!isEmail(email)) {
-        //         return "Wrong email type"
-        //     }
-        //     if (!onlyString(fname)) {
-        //         return "First name must be letter only"
-        //     }
-        //     if (!onlyString(lname)) {
-        //         return "Last name must be letter only"
-        //     }
-        //     if (!onlyString(city)) {
-        //         return "City must be letter only"
-        //     }
-        //     if (q1 === q2) {
-        //         return "You must choose different Questions!"
-        //     }
-        // }
-        //
-        // function isValidUsername(username) {
-        //     return /^[a-zA-Z]{3,8}$/.test(username);
-        // }
-        //
-        // function onlyString(word) {
-        //     return /^[a-zA-Z\s-]+$/.test(word)
-        // }
-        //
-        // function isEmail(email) {
-        //     return /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/.test(email)
-        // }
-        //
-        // function isValidPassword(username) {
-        //     return /^[a-zA-Z0-9]{5,10}$/.test(username)
-        // }
 
     });

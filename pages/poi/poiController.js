@@ -5,7 +5,7 @@ angular.module("myApp")
         $scope.poiSavedMess = "";
         $scope.poiSaved = [];
 
-        $scope.init = function () {
+        $scope.init = function () {    //the initiation function
             $scope.getAllReviews();
             $scope.poiCartMess.sho = true;
             $scope.poiSavedMess.sho = true;
@@ -42,15 +42,12 @@ angular.module("myApp")
             $scope.showAll();
         };
 
-        $scope.getAll = function () {
+        $scope.getAll = function () {   //return all the poi avaliable
             let req = {
                 method: 'GET',
                 url: 'http://localhost:3000/getAllPOI',
-                // params: {
-                //     name: nameToSend,
-                // }
             }
-            $http(req).then(function (response) { //turning off the ng-show/hide
+            $http(req).then(function (response) {
                 if (response.data === false) {
                     console.log("big problem");
                 } else {
@@ -66,7 +63,7 @@ angular.module("myApp")
         }
 
 
-        $scope.addToDB = function (selected) {
+        $scope.addToDB = function (selected) { //add a poi from cart to the db
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/private/addUserPoi',
@@ -100,10 +97,6 @@ angular.module("myApp")
                         }
                     }
                     $scope.poiShow = tmp1;
-                    // if($scope.poiShow.length===0){
-                    //     $scope.poiShow.found=false;
-                    //     $scope.poiShow.notfound=true;
-                    // }
                     for (k = 0; k < $scope.poiShow.length; k++) {
                         if (k !== 0) {
                             tmpString = tmpString + "," + $scope.poiShow[k].poiname;
@@ -134,7 +127,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.AddReview = function (selected) {
+        $scope.AddReview = function (selected) { //add opinion on poi- rank and review
             if ($scope.rank != null) {
                 $scope.AddRank(selected);
             }
@@ -144,7 +137,7 @@ angular.module("myApp")
             $scope.clearM();
         }
 
-        $scope.AddRank = function (selected) {
+        $scope.AddRank = function (selected) {     //add rank on the poi
            // let rankAdd=(parseInt($scope.rank)-1)*(25);
             let req = {
                 method: 'POST',
@@ -164,7 +157,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.AddReviewDB = function (selected) {
+        $scope.AddReviewDB = function (selected) {          //add revie on the poi
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/saveReviewPoi',
@@ -184,7 +177,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.showAll = function () {
+        $scope.showAll = function () {              //get allpoi relevent to a specific user
             let req = {
                 method: 'GET',
                 url: 'http://localhost:3000/private/getAllPOIBu',
@@ -209,7 +202,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.deleteFromDB = function (selected) {
+        $scope.deleteFromDB = function (selected) {             //deete poi from db
             let req = {
                 method: 'DELETE',
                 url: 'http://localhost:3000/private/deleteUserPoi',
@@ -240,7 +233,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.getByrank = function () {
+        $scope.getByrank = function () {                //get all the pois orderd by rank
             let req = {
                 method: 'GET',
                 url: 'http://localhost:3000/private/getAllPOIORnk',
@@ -269,7 +262,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.selectByCat = function () {
+        $scope.selectByCat = function () {              //select poi by category
             if ($scope.cat === "") {
                 $scope.showAll();
             } else {
@@ -308,7 +301,7 @@ angular.module("myApp")
                 });
             }
         }
-        $scope.getRank = function (poiId, num) {
+        $scope.getRank = function (poiId, num) {                //get  user index  of saved poi
             let req = {
                 method: 'GET',
                 url: 'http://localhost:3000/private/getAllPOIBu',
@@ -388,7 +381,7 @@ angular.module("myApp")
                 }
             });
         }
-        $scope.rankUp = function (selected) {
+        $scope.rankUp = function (selected) {           // make index higher for a saved poi
 
             $scope.defer1 = $q.defer();
             $scope.getRank(selected.poiId, 1);
@@ -402,7 +395,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.rankDown = function (selected) {
+        $scope.rankDown = function (selected) {             //make index lower for saved poi
             $scope.defer2 = $q.defer();
             $scope.getRank(selected.poiId, 2);
             $scope.defer2.promise.then(function (ind) {
@@ -415,7 +408,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.editRank = function (poiId, ind) {
+        $scope.editRank = function (poiId, ind) {           //edit index of a user saved poi
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/private/editRank',
@@ -457,7 +450,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.incrementRank = function (poiId, ind) {
+        $scope.incrementRank = function (poiId, ind) {              //increments all saved user index by 1
             let req = {
                 method: 'POST',
                 url: 'http://localhost:3000/private/editRank',
@@ -479,7 +472,7 @@ angular.module("myApp")
             });
         }
 
-        $scope.clearM = function () {
+        $scope.clearM = function () {               //clear the modal
          $scope.rank="";
          $scope.review="";
 
@@ -491,7 +484,7 @@ angular.module("myApp")
             $scope.orderpoi = false;
         }
 
-        $scope.getAllReviews = function () {
+        $scope.getAllReviews = function () {                    //gett all reviews on poi
             var promises = [];
             let rvws = new Array(20);
             rvws[0] = false;
@@ -515,88 +508,3 @@ angular.module("myApp")
             });
         }
     });
-
-
-// angular.module("myApp")
-//     .controller("poiController", function ($scope, $http, $window, $q) {
-//         let poi = [];
-//         let poiToPrint = [];
-//         var promises = [];
-//         $scope.ab = function () {
-//             let stringArr = "Sumo,Vapiano,Vapiano";
-//             let arr = stringArr.split(',');
-//
-//             let tmpPoi = "";
-//             // $scope.name=arr[0];
-//             // $scope.name2=arr[1];
-//
-//             for (i = 0; i < arr.length; i++) {
-//                 //$scope.defer = $q.defer();
-//                 $scope.defer = $q.defer();
-//                 promises.push($scope.defer);
-//                 $scope.cd(arr[i], i);
-//                 $scope.defer.promise.then(function () {
-//                     // pois.push({name:response.data[0].poiname,rnk:response.data[0].rnk, category:response.data[0].category,desc:response.data[0].descr,view: response.data[0].viw,img: response.data[0].picture});
-//                     // $q.all([promises]).then(function (result) {
-//                     //     for (j = 0; j < poi.length; j += 6) {
-//                     //         console.log("1 finished num " + i);
-//                     //         poiToPrint.push({
-//                     //             name: poi[j + 0],
-//                     //             rnk: poi[j + 1],
-//                     //             category: poi[j + 2],
-//                     //             desc: poi[j + 3],
-//                     //             view: poi[j + 4],
-//                     //             img: poi[j + 5]
-//                     //         });
-//                     //     }
-//                          console.log("2 finished num " + i);
-//                     // });
-//
-//                     // poi = [];
-//
-//                 });
-//             }
-//
-//
-//             // for(i=0;i<arr.length;i++){
-//             //
-//             // }
-//         }
-//         $scope.cd = function (nameToSend, i) {
-//             let req = {
-//                 method: 'GET',
-//                 url: 'http://localhost:3000/getAllPOIBN',
-//                 params: {
-//                     name: nameToSend,
-//                 }
-//             }
-//             $http(req).then(function (response) { //turning off the ng-show/hide
-//                 if (response.data === false) {
-//                     console.log("big problem");
-//                 } else {
-//
-//                     // poi.push(response.data[0].poiname);
-//                     // poi.push(response.data[0].rnk);
-//                     // poi.push(response.data[0].category);
-//                     // poi.push(response.data[0].descr);
-//                     // poi.push(response.data[0].viw);
-//                     // poi.push(response.data[0].picture);
-//                     poi.push(response.data[0])
-//                     console.log("other func: " + i);
-//                     $scope.defer.resolve();
-//
-//                     // if(i==0){
-//                     //
-//                     //     $scope.name1 = response.data[0].poiname;
-//                     //     $scope.name2 = response.data[0].poiId;
-//                     // }
-//                     // else{
-//                     //     $scope.name3 = response.data[0].poiname;
-//                     //     $scope.name4 = response.data[0].poiId;
-//                     // }
-//                 }
-//             });
-//
-//         }
-//
-//     });
