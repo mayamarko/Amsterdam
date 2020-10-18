@@ -1,9 +1,22 @@
+
+# Tour advisor website
+
+This project has been developed as part of a Internet Programming Environments, which took place during spring semester of 2019 in Ben Gurion University.
+
+This part is the client side writen with AngularJs framework. 
+API document attached as pdf to this repository.
+The server side is in repo: github.com/mayamarko/api3.2/
+
+*Both of the sides needs to run in order to start using this website.
+
 # Amsterdam
 welcome to our site - the city we selected is **Amsterdam** in the Netherlands.
 
 In order to use the site it is always a good idea to log in or register to get the full site functionality.
 
 Existing users:
+
+username - a   password - a
 
 username- qqqq password- 123asd
 
