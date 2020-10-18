@@ -47,6 +47,7 @@ In addition, a registered user can order the presented poi in selected order usi
 *As requested it is possible to log in with username a password a.
 
 ## Authors:
-  - Maya Markovich
   - Nofar Turteltaub
+  - Maya Markovich
+
   
