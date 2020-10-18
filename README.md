@@ -3,7 +3,7 @@
 
 This project has been developed as part of a Internet Programming Environments, which took place during spring semester of 2019 in Ben Gurion University.
 
-In this project we played different roles in three different parts: 
+In this project we played different roles in three different parts:  
 - Project manager - planning the API 
 - Backend programmer - can be found in:  https://github.com/mayamarko/api3.2
 - Frontend programmer - (this repository) writen with **AngularJs framework**.  
