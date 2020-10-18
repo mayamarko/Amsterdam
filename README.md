@@ -3,9 +3,13 @@
 
 This project has been developed as part of a Internet Programming Environments, which took place during spring semester of 2019 in Ben Gurion University.
 
-- This part is the client side writen with **AngularJs framework**. 
-- API document attached as pdf to this repository.
-- The server side is in repo: https://github.com/mayamarko/api3.2
+In this project we played different roles in three different parts: 
+- Project manager - planning the API 
+- Backend programmer - can be found in:  https://github.com/mayamarko/api3.2
+- Frontend programmer - (this repository) writen with **AngularJs framework**.  
+
+
+*The final API document attached client side repository.
 
 *Both of the sides needs to run in order to start using this website.
 
