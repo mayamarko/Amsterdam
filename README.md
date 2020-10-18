@@ -41,3 +41,8 @@ After a poi has been saved, a registered user have the option to add review, del
 In addition, a registered user can order the presented poi in selected order using the arrows buttons.
 
 *As requested it is possible to log in with username a password a.
+
+## Authors:
+  - Maya Markovich
+  - Nofar Turteltaub
+  
